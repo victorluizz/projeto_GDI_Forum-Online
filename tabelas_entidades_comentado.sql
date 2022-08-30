@@ -29,9 +29,9 @@ CREATE TABLE email(
     );
 
 CREATE TABLE secao(
-    id NUMBER NOT NULL
+    id_secao NUMBER NOT NULL
     ,titulo VARCHAR2(40)
-    ,CONSTRAINT secao_pkey PRIMARY KEY (id) -- Definindo "id" como Chave Primária da tabela "secao"
+    ,CONSTRAINT secao_pkey PRIMARY KEY (id_secao) -- Definindo "id" como Chave Primária da tabela "secao"
     );
 
 CREATE TABLE cards_do_usuario(
@@ -43,11 +43,11 @@ CREATE TABLE cards_do_usuario(
     ,CONSTRAINT login_usuario_card_pkey FOREIGN KEY (login_usuario_card) REFERENCES usuario(login) -- Referenciando "login_usuario_card" como Chave Estrangeira na tabela "cards_do_usuario"
     );
 
-CREATE TABLE thread(
-    id NUMBER NOT NULL
+CREATE TABLE thread_tabela(
+    id_thread NUMBER NOT NULL
     ,titulo VARCHAR2(40)
     ,texto VARCHAR2(300)  
-    ,CONSTRAINT thread_pkey PRIMARY KEY (id) -- Definindo "id" como Chave Primária da tabela "thread"
+    ,CONSTRAINT thread_tabela_pkey PRIMARY KEY (id_thread) -- Definindo "id" como Chave Primária da tabela "thread"
     );
 
 CREATE TABLE reply(
@@ -63,13 +63,71 @@ CREATE TABLE moderador(
     ,CONSTRAINT login_moderador_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login) -- Referenciando "login_moderador" como uma Chave Estrangeira na tabela "moderador"
     );
 CREATE TABLE anexo(
-    id NUMBER NOT NULL
+    id_anexo NUMBER NOT NULL
     ,login_usuario_envia VARCHAR(30)
     ,login_usuario_recebe VARCHAR2(30)
     ,data_hora DATE
-    ,CONSTRAINT anexo_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, id) -- Definindo "login_usuario_envia", "login_usuario_recebe" e "id" como Chave Primária Composta da tabela "anexo"
+    ,CONSTRAINT anexo_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, id_anexo) -- Definindo "login_usuario_envia", "login_usuario_recebe" e "id" como Chave Primária Composta da tabela "anexo"
     ,CONSTRAINT anexo_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login) -- Referenciando "login-usuario_envia" como Chave Estrangeira na tabela "anexo"
     ,CONSTRAINT anexo_fkey2 FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login) -- Referenciando "login-usuario_recebe" como Chave Estrangeira na tabela "anexo"
+    );
+
+CREATE TABLE modera_secao(
+    login_moderador VARCHAR2(30),
+    id_secao_modera_secao NUMBER NOT NULL,
+    CONSTRAINT modera_secao_pkey PRIMARY KEY (login_moderador, id_secao_modera_secao),
+    CONSTRAINT login_moderador_secao_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
+    CONSTRAINT id_secao_fkey FOREIGN KEY (id_secao_modera_secao) REFERENCES secao(id_secao)
+    );
+
+CREATE TABLE modera_thread(
+    login_moderador VARCHAR2(30),
+    id_thread_modera_thread NUMBER NOT NULL,
+    acao NUMBER NOT NULL,
+    CONSTRAINT modera_thread_pkey PRIMARY KEY (login_moderador, id_thread_modera_thread),
+    CONSTRAINT login_moderador_thread_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
+    CONSTRAINT id_thread_fkey FOREIGN KEY (id_thread_modera_thread) REFERENCES thread_tabela(id_thread)
+    );
+CREATE TABLE envia_mensagem (
+    login_usuario_envia VARCHAR2(30),
+    login_usuario_recebe VARCHAR2(30),
+    data_hora DATE,
+    texto VARCHAR2(300),
+    CONSTRAINT envia_mensagem_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, data_hora),
+    CONSTRAINT login_usuario_envia_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login),
+    CONSTRAINT login_usuario_recebe_fkey FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login)
+    );
+
+CREATE TABLE cria_thread(
+    login_usuario_cria_thread VARCHAR2(30)
+    ,id_secao_cria_thread NUMBER
+    ,id_thread_cria_thread NUMBER
+    ,data_hora_thread DATE
+    ,CONSTRAINT cria_thread_pkey PRIMARY KEY (login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread)
+    ,CONSTRAINT cria_thread_fkey FOREIGN KEY (login_usuario_cria_thread) REFERENCES usuario(login)
+    ,CONSTRAINT cria_thread_fkey2 FOREIGN KEY (id_secao_cria_thread) REFERENCES secao(id_secao)
+    ,CONSTRAINT cria_thread_fkey3 FOREIGN KEY (id_thread_cria_thread) REFERENCES thread_tabela(id_thread)
+    );
+
+CREATE TABLE cria_resposta(
+    login_usuario_cria_resposta VARCHAR2(30)
+    ,id_thread_cria_resposta NUMBER
+    ,numero_reply_cria_resposta NUMBER
+    ,data_hora_cria_resposta DATE
+    ,CONSTRAINT cria_resposta_pkey PRIMARY KEY (login_usuario_cria_resposta, id_thread_cria_resposta, numero_reply_cria_resposta)
+    ,CONSTRAINT cria_resposta_fkey FOREIGN KEY (login_usuario_cria_resposta) REFERENCES usuario(login)
+    ,CONSTRAINT cria_resposta_fkey2 FOREIGN KEY (id_thread_cria_resposta) REFERENCES thread_tabela(id_thread)
+    ,CONSTRAINT cria_resposta_fkey3 FOREIGN KEY (numero_reply_cria_resposta) REFERENCES reply(numero)
+    );
+
+CREATE TABLE bane(
+    login_usuario_banido VARCHAR(30)
+    ,login_moderador_bane VARCHAR(30)
+    ,id_secao_bane NUMBER
+    ,CONSTRAINT bane_pkey PRIMARY KEY (login_usuario_banido, login_moderador_bane, id_secao_bane)
+    ,CONSTRAINT bane_fkey FOREIGN KEY (login_usuario_banido) REFERENCES usuario(login)
+    ,CONSTRAINT bane_fkey2 FOREIGN KEY (login_moderador_bane) REFERENCES usuario(login)
+    ,CONSTRAINT bane_fkey3 FOREIGN KEY (id_secao_bane) REFERENCES secao(id_secao)
     );
 
 -- Criando as sequencias

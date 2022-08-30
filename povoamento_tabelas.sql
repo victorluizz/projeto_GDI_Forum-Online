@@ -158,3 +158,41 @@ INSERT INTO moderador (login_moderador, ranking)
 SELECT login, 1
 FROM usuario
 WHERE login = 'marcelo_anderson';
+
+-- povoamento secoes
+
+INSERT INTO secao (id_secao, titulo) VALUES (1, 'Acao');
+INSERT INTO secao (id_secao, titulo) VALUES (2, 'Comedia');
+INSERT INTO secao (id_secao, titulo) VALUES (3, 'Terror');
+
+-- THREADS
+
+-- comedia
+INSERT INTO thread_tabela(id_thread, titulo, texto) VALUES (1, 'Lancamentos de COMEDIA', 'discussao dos lancamentos de comedia');
+INSERT INTO cria_thread(login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread, data_hora_thread) VALUES ('victorluiz', 2,1, TO_DATE ('2022-06-06 09:01', 'yyyy-mm-dd hh24:mi'));
+
+-- terror
+INSERT INTO thread_tabela(id_thread, titulo, texto) VALUES (2, 'Novos filmes de TERROR', 'vamos discutir os novos filmes de terror!');
+INSERT INTO cria_thread(login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread, data_hora_thread) VALUES ('victorluiz', 3,2, TO_DATE ('2022-06-06 09:01', 'yyyy-mm-dd hh24:mi'));
+
+--acao
+INSERT INTO thread_tabela(id_thread, titulo, texto) VALUES (3, 'Em cartaz: ACAO!', 'Vamos falar dos novos filmes de acao');
+INSERT INTO cria_thread(login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread, data_hora_thread) VALUES ('carlos_roberto1', 1,3, TO_DATE ('2022-06-06 09:01', 'yyyy-mm-dd hh24:mi'));
+
+-- comedia
+INSERT INTO thread_tabela(id_thread, titulo, texto) VALUES (4, 'Comedias do netflix', 'recomendações de boas comédias nos netflix');
+INSERT INTO cria_thread(login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread, data_hora_thread) VALUES ('alice_sales', 2,4, TO_DATE ('2022-06-06 09:02', 'yyyy-mm-dd hh24:mi'));
+
+-- terror
+INSERT INTO thread_tabela(id_thread, titulo, texto) VALUES (5, 'filmes de terror pra crianças', 'meu sobrinho quer ver um filme de terror, me ajudem a escolher um, ele tem 10 anos');
+INSERT INTO cria_thread(login_usuario_cria_thread, id_secao_cria_thread, id_thread_cria_thread, data_hora_thread) VALUES ('botan', 3,5, TO_DATE ('2022-06-06 09:02', 'yyyy-mm-dd hh24:mi'));
+
+-- REPLIES
+
+INSERT INTO reply(numero, mensagem) VALUES (1, 'Alguem pode me emprestar uma conta do netflix? mandem DM');
+INSERT INTO cria_resposta(login_usuario_cria_resposta, id_thread_cria_resposta, numero_reply_cria_resposta, data_hora_cria_resposta)
+VALUES ('carlos_roberto1', 4, 1, TO_DATE ('2022-06-06 10:01', 'yyyy-mm-dd hh24:mi'));
+
+INSERT INTO reply(numero, mensagem) VALUES (2, 'Nao pode pedir conta emprestado, vai tomar ban');
+INSERT INTO cria_resposta(login_usuario_cria_resposta, id_thread_cria_resposta, numero_reply_cria_resposta, data_hora_cria_resposta)
+VALUES ('botan', 4, 2, TO_DATE ('2022-06-06 10:02', 'yyyy-mm-dd hh24:mi'));

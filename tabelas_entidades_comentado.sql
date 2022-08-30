@@ -76,8 +76,8 @@ CREATE TABLE modera_secao(
     login_moderador VARCHAR2(30),
     id_secao_modera_secao NUMBER NOT NULL,
     CONSTRAINT modera_secao_pkey PRIMARY KEY (login_moderador, id_secao_modera_secao),
-    CONSTRAINT login_moderador_secao_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
-    CONSTRAINT id_secao_fkey FOREIGN KEY (id_secao_modera_secao) REFERENCES secao(id_secao)
+    CONSTRAINT modera_secao_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
+    CONSTRAINT modera_secao_fkey2 FOREIGN KEY (id_secao_modera_secao) REFERENCES secao(id_secao)
     );
 
 CREATE TABLE modera_thread(
@@ -85,8 +85,8 @@ CREATE TABLE modera_thread(
     id_thread_modera_thread NUMBER NOT NULL,
     acao NUMBER NOT NULL,
     CONSTRAINT modera_thread_pkey PRIMARY KEY (login_moderador, id_thread_modera_thread),
-    CONSTRAINT login_moderador_thread_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
-    CONSTRAINT id_thread_fkey FOREIGN KEY (id_thread_modera_thread) REFERENCES thread_tabela(id_thread)
+    CONSTRAINT modera_thread_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login),
+    CONSTRAINT modera_thread_fkey2 FOREIGN KEY (id_thread_modera_thread) REFERENCES thread_tabela(id_thread)
     );
 CREATE TABLE envia_mensagem (
     login_usuario_envia VARCHAR2(30),
@@ -94,8 +94,8 @@ CREATE TABLE envia_mensagem (
     data_hora DATE,
     texto VARCHAR2(300),
     CONSTRAINT envia_mensagem_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, data_hora),
-    CONSTRAINT login_usuario_envia_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login),
-    CONSTRAINT login_usuario_recebe_fkey FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login)
+    CONSTRAINT envia_mensagem_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login),
+    CONSTRAINT envia_mensagem_fkey2 FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login)
     );
 
 CREATE TABLE cria_thread(

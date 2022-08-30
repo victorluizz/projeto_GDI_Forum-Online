@@ -161,9 +161,11 @@ WHERE login = 'marcelo_anderson';
 
 -- povoamento secoes
 
-INSERT INTO secao (id_secao, titulo) VALUES (1, 'Acao');
+INSERT INTO secao (id_secao, titulo) VALUES (1, 'Ação');
 INSERT INTO secao (id_secao, titulo) VALUES (2, 'Comedia');
 INSERT INTO secao (id_secao, titulo) VALUES (3, 'Terror');
+INSERT INTO secao (id_secao, titulo) VALUES (4, 'Romance');
+INSERT INTO secao (id_secao, titulo) VALUES (5, 'Drama');
 
 -- THREADS
 

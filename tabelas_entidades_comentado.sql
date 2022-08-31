@@ -45,7 +45,7 @@ CREATE TABLE cards_do_usuario(
 
 CREATE TABLE thread_tabela(
     id_thread NUMBER NOT NULL
-    ,titulo VARCHAR2(40)
+    ,titulo VARCHAR2(50)
     ,texto VARCHAR2(300)  
     ,CONSTRAINT thread_tabela_pkey PRIMARY KEY (id_thread) -- Definindo "id" como Chave Primária da tabela "thread"
     );

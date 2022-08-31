@@ -202,3 +202,15 @@ INSERT INTO reply(numero, mensagem) VALUES (2, 'Nao pode pedir conta emprestado,
 INSERT INTO cria_resposta(login_usuario_cria_resposta, id_thread_cria_resposta, numero_reply_cria_resposta, data_hora_cria_resposta)
 VALUES ('botan', 4, 2, TO_DATE ('2022-06-06 10:02', 'yyyy-mm-dd hh24:mi'));
 
+-- Banimentos
+
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 1);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 2);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 3);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 4);
+
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 5);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 4);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 3);
+
+

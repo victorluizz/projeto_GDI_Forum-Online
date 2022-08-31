@@ -228,3 +228,20 @@ INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('alice_
 INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('alice_sales', 5);
 
 INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('marcelo_anderson', 1);
+
+-- moderar threads
+
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('alice_sales', 2, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('alice_sales', 5, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('alice_sales', 6, 1);
+
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 1, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 2, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 3, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 4, 1);
+
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('karenn_', 4, 0);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('karenn_', 5, 0);
+
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('marcelo_anderson', 4, 1);
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('marcelo_anderson', 5, 1);

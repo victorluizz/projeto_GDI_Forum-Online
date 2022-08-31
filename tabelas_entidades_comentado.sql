@@ -67,6 +67,7 @@ CREATE TABLE anexo(
     id_anexo NUMBER NOT NULL
     ,login_usuario_envia VARCHAR(30)
     ,login_usuario_recebe VARCHAR2(30)
+    ,link VARCHAR2(200)
     ,data_hora DATE
     ,CONSTRAINT anexo_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, id_anexo) -- Definindo "login_usuario_envia", "login_usuario_recebe" e "id" como Chave Primária Composta da tabela "anexo"
     ,CONSTRAINT anexo_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login) -- Referenciando "login-usuario_envia" como Chave Estrangeira na tabela "anexo"
@@ -84,7 +85,7 @@ CREATE TABLE modera_secao(
 CREATE TABLE modera_thread(
     login_moderador VARCHAR2(30)
     ,id_thread_modera_thread NUMBER NOT NULL
-    ,acao NUMBER NOT NULL
+    ,acao VARCHAR2(30)
     ,CONSTRAINT modera_thread_pkey PRIMARY KEY (login_moderador, id_thread_modera_thread) -- Definindo "login_moderador" e "id_thread_modera_thread" como Chave Primária da tabela "modera_thread"
     ,CONSTRAINT modera_thread_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login) -- Referenciando "login_moderador" como Chave Estrangeira na tabela "modera_thread"
     ,CONSTRAINT modera_thread_fkey2 FOREIGN KEY (id_thread_modera_thread) REFERENCES thread_tabela(id_thread) -- Referenciando "id_thread_modera_thread" como Chave Estrangeira na tabela "modera_thread"
@@ -134,6 +135,12 @@ CREATE TABLE bane(
 -- Criando as sequencias
 
 CREATE SEQUENCE card_numero_seq -- Criando uma sequência para a chave primária "numero" da tabela "cards_do_usuario"
+    MINVALUE 1
+    INCREMENT BY 1
+    START WITH 1
+    CACHE 50;
+
+CREATE SEQUENCE anexo_id_seq -- Criando uma sequência para a chave primária "id_numero" da tabela "anexo"
     MINVALUE 1
     INCREMENT BY 1
     START WITH 1

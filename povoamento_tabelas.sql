@@ -204,13 +204,27 @@ VALUES ('botan', 4, 2, TO_DATE ('2022-06-06 10:02', 'yyyy-mm-dd hh24:mi'));
 
 -- Banimentos
 
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 1);
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 2);
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 3);
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (g_machado, botan, 4);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('g_machado', 'botan', 1);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('g_machado', 'botan', 2);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('g_machado', 'botan', 3);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('g_machado', 'botan', 4);
 
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 5);
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 4);
-INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES (gabriela_pinheiro, karenn_, 3);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('gabriela_pinheiro', 'karenn_', 5);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('gabriela_pinheiro', 'karenn_', 4);
+INSERT INTO bane(login_usuario_banido, login_moderador_bane, id_secao_bane) VALUES ('gabriela_pinheiro', 'karenn_', 3);
 
+-- moderar seções
 
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('botan', 1);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('botan', 2);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('botan', 3);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('botan', 4);
+
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('karenn_', 3);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('karenn_', 4);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('karenn_', 5);
+
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('alice_sales', 3);
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('alice_sales', 5);
+
+INSERT INTO modera_secao(login_moderador, id_secao_modera_secao) VALUES ('marcelo_anderson', 1);

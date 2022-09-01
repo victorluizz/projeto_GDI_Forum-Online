@@ -63,16 +63,6 @@ CREATE TABLE moderador(
     ,CONSTRAINT login_moderador_fkey FOREIGN KEY (login_moderador) REFERENCES usuario(login) -- Referenciando "login_moderador" como uma Chave Estrangeira na tabela "moderador"
     );
 
-CREATE TABLE anexo(
-    id_anexo NUMBER NOT NULL
-    ,login_usuario_envia VARCHAR(30)
-    ,login_usuario_recebe VARCHAR2(30)
-    ,link VARCHAR2(200)
-    ,data_hora DATE
-    ,CONSTRAINT anexo_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, id_anexo) -- Definindo "login_usuario_envia", "login_usuario_recebe" e "id" como Chave Primária Composta da tabela "anexo"
-    ,CONSTRAINT anexo_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login) -- Referenciando "login-usuario_envia" como Chave Estrangeira na tabela "anexo"
-    ,CONSTRAINT anexo_fkey2 FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login) -- Referenciando "login-usuario_recebe" como Chave Estrangeira na tabela "anexo"
-    );
 
 CREATE TABLE modera_secao(
     login_moderador VARCHAR2(30)
@@ -93,11 +83,21 @@ CREATE TABLE modera_thread(
 CREATE TABLE envia_mensagem (
     login_usuario_envia VARCHAR2(30)
     ,login_usuario_recebe VARCHAR2(30)
-    ,data_hora DATE
+    ,data_hora TIMESTAMP
     ,texto VARCHAR2(300)
     ,CONSTRAINT envia_mensagem_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, data_hora) -- Definindo "login_usuario_envia", "login_usuario_recebe", "data_hora" como Chave Primária da tabela "envia_mensagem"
     ,CONSTRAINT envia_mensagem_fkey FOREIGN KEY (login_usuario_envia) REFERENCES usuario(login) -- Referenciando "login_usuario_envia" como Chave Estrangeira na tabela "envia_mensagem"
     ,CONSTRAINT envia_mensagem_fkey2 FOREIGN KEY (login_usuario_recebe) REFERENCES usuario(login) -- Referenciando "login_usuario_recebe" como Chave Estrangeira na tabela "envia_mensagem"
+    );
+
+CREATE TABLE anexo(
+    id_anexo NUMBER NOT NULL
+    ,login_usuario_envia VARCHAR(30)
+    ,login_usuario_recebe VARCHAR2(30)
+    ,link VARCHAR2(200)
+    ,data_hora TIMESTAMP
+    ,CONSTRAINT anexo_pkey PRIMARY KEY (login_usuario_envia, login_usuario_recebe, id_anexo) -- Definindo "login_usuario_envia", "login_usuario_recebe" e "id" como Chave Primária Composta da tabela "anexo"
+    ,CONSTRAINT anexo_fkey FOREIGN KEY (login_usuario_envia, login_usuario_recebe, data_hora) REFERENCES envia_mensagem(login_usuario_envia, login_usuario_recebe, data_hora)
     );
 
 CREATE TABLE cria_thread(

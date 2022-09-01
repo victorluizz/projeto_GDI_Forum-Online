@@ -134,12 +134,6 @@ CREATE TABLE bane(
 
 -- Criando as sequencias
 
-CREATE SEQUENCE card_numero_seq -- Criando uma sequência para a chave primária "numero" da tabela "cards_do_usuario"
-    MINVALUE 1
-    INCREMENT BY 1
-    START WITH 1
-    CACHE 50;
-
 CREATE SEQUENCE anexo_id_seq -- Criando uma sequência para a chave primária "id_numero" da tabela "anexo"
     MINVALUE 1
     INCREMENT BY 1

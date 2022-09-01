@@ -216,36 +216,49 @@ SELECT login, 4
 FROM usuario
 WHERE login = 'romulodaniell2';
 
--- Povoamento da tabela "anexo"
-
-INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
-VALUES (card_numero_seq.NEXTVAL, 'victorluiz', 'romulodaniell2', 'https://www.youtube.com/watch?v=-CmadmM5cOk' ,TO_DATE ('2022-03-04 23:45', 'yyyy-mm--dd hh24:mi'));
-
-INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
-VALUES (card_numero_seq.NEXTVAL, 'romulodaniell2', 'victorluiz', 'https://www.youtube.com/watch?v=iRzDyUQi2Qk' ,TO_DATE ('2022-03-14 23:10', 'yyyy-mm--dd hh24:mi'));
-
-INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
-VALUES (card_numero_seq.NEXTVAL, 'carlos_roberto1', 'victorluiz', 'https://www.youtube.com/watch?v=A3xUeelVels' ,TO_DATE ('2022-03-14 23:34', 'yyyy-mm--dd hh24:mi'));
-
-INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
-VALUES (card_numero_seq.NEXTVAL, 'karenn_', 'fernanda_pascoal', 'https://www.youtube.com/watch?v=PnqUs3xiAVI' ,TO_DATE ('2022-04-01 11:32', 'yyyy-mm--dd hh24:mi'));
-
 -- Povoamento da tabela "envia_mensagem"
 
 INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
-VALUES ('victorluiz', 'romulodaniell2', TO_DATE ('2022-01-13 22:30', 'yyyy-mm-dd hh24:mi'), 'ja assistiu corra?');
+VALUES ('victorluiz', 'romulodaniell2', TIMESTAMP'2022-01-13 22:30:14.23', 'ja assistiu corra?');
 
 INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
-VALUES ('romulodaniell2', 'victorluiz', TO_DATE ('2022-01-13 22:32', 'yyyy-mm-dd hh24:mi'), 'sim, curti bastante');
+VALUES ('romulodaniell2', 'victorluiz', TIMESTAMP'2022-01-13 22:32:12.44', 'sim, curti bastante');
 
 INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
-VALUES ('fernanda_pascoal', 'karenn_', TO_DATE ('2022-03-15 10:30', 'yyyy-mm-dd hh24:mi'), 'me indica um filme?');
+VALUES ('fernanda_pascoal', 'karenn_', TIMESTAMP'2022-03-15 10:30:11.55', 'me indica um filme?');
 
 INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
-VALUES ('fernanda_pascoal', 'karenn_', TO_DATE ('2022-03-15 10:31', 'yyyy-mm-dd hh24:mi'), 'um de terror, de preferencia');
+VALUES ('fernanda_pascoal', 'karenn_', TIMESTAMP'2022-03-15 10:31:12.43', 'um de terror, de preferencia');
 
 INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
-VALUES ('karenn_', 'fernanda_pascoal', TO_DATE ('2022-03-15 10:36', 'yyyy-mm-dd hh24:mi'), 'vixi, nao conheco mts');
+VALUES ('karenn_', 'fernanda_pascoal', TIMESTAMP'2022-03-15 10:36:11.22', 'vixi, nao conheco mts');
+
+INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
+VALUES ('victorluiz', 'romulodaniell2', TIMESTAMP'2022-03-04 23:45:33.12', 'escuta essa musica:');
+
+INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
+VALUES ('romulodaniell2', 'victorluiz', TIMESTAMP'2022-03-14 23:10:53.12', 'olha isso');
+
+INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
+VALUES ('carlos_roberto1', 'victorluiz', TIMESTAMP'2022-05-14 23:34:44.45', 'aqui o link que falei no topico');
+
+INSERT INTO envia_mensagem (login_usuario_envia, login_usuario_recebe, data_hora, texto)
+VALUES ('karenn_', 'fernanda_pascoal', TIMESTAMP'2022-04-01 11:32:13.14', 'escuta essa musica:');
+
+
+-- Povoamento da tabela "anexo"
+
+INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
+VALUES (anexo_id_seq.NEXTVAL, 'victorluiz', 'romulodaniell2', 'https://www.youtube.com/watch?v=-CmadmM5cOk' , TIMESTAMP'2022-03-04 23:45:33.12');
+
+INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
+VALUES (anexo_id_seq.NEXTVAL, 'romulodaniell2', 'victorluiz', 'https://www.youtube.com/watch?v=iRzDyUQi2Qk' , TIMESTAMP'2022-03-14 23:10:53.12');
+
+INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
+VALUES (anexo_id_seq.NEXTVAL, 'carlos_roberto1', 'victorluiz', 'https://www.youtube.com/watch?v=A3xUeelVels' ,TIMESTAMP'2022-05-14 23:34:44.45');
+
+INSERT INTO anexo (id_anexo, login_usuario_envia, login_usuario_recebe, link, data_hora)
+VALUES (anexo_id_seq.NEXTVAL, 'karenn_', 'fernanda_pascoal', 'https://www.youtube.com/watch?v=PnqUs3xiAVI' ,TIMESTAMP'2022-04-01 11:32:13.14');
 
 
 -- povoamento secoes

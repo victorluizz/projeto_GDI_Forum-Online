@@ -1,3 +1,23 @@
+-- ALTER TABLE
+
+ALTER TABLE endereco
+    ADD CONSTRAINT endereco_pkey PRIMARY KEY (login_usuario_endereco);
+
+-- CREATE INDEX
+
+-- INSERT INTO
+
+-- UPDATE
+UPDATE usuario
+    SET senha = 'victinholuiz'
+    WHERE login_usuario = 'victorluiz';
+
+
+-- DELETE
+
+
+-- SELECT - FROM - WHERE
+
 -- select threads por secao 
 select * from thread_tabela where id_thread in (select id_thread_cria_thread from cria_thread where id_secao_cria_thread = 3);
 
@@ -9,3 +29,63 @@ select * from reply where numero in (select numero_reply_cria_resposta from cria
 
 -- select replies por thread
 select * from reply where numero in (select numero_reply_cria_resposta from cria_resposta where id_thread_cria_resposta = 4);
+
+
+-- BETWEEN 
+
+
+-- IN
+
+
+-- LIKE
+
+
+-- IS NULL ou IS NOT NULL
+
+
+-- INNER JOIN
+
+
+-- MAX
+
+
+-- MIN
+
+
+-- AVG
+
+
+-- COUNT
+
+
+-- LEFT ou RIGHT ou FULL OUTER JOIN
+
+
+-- SUBCONSULTA COM OPERADOR RELACIONAL
+
+
+-- SUBCONSULTA COM IN
+
+
+-- SUBCONSULTA COM ANY
+
+
+-- SUBCONSULTA COM ALL
+
+
+-- ORDER BY
+
+
+-- GROUP BY
+
+
+-- HAVING
+
+
+-- UNION ou INTERSECT ou MINUS
+
+
+-- CREATE VIEW
+
+
+-- GRANT / REVOKE

@@ -43,7 +43,9 @@ WHERE login IS NULL;
 
 
 -- INNER JOIN
-
+SELECT CR.login_usuario_cria_resposta, reply.mensagem
+FROM cria_resposta CR
+INNER JOIN reply ON reply.numero = CR.numero_reply_cria_resposta;
 
 -- MAX
 

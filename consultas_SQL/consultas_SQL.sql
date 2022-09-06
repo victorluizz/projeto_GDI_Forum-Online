@@ -48,15 +48,32 @@ FROM cria_resposta CR
 INNER JOIN reply ON reply.numero = CR.numero_reply_cria_resposta;
 
 -- MAX
+SELECT MAX(numero_reply_cria_resposta) AS Largesnumero_reply_cria_resposta
+FROM cria_resposta;
 
+SELECT MAX(data_hora) AS Largesdata_hora
+FROM usuario;
 
 -- MIN
+SELECT MIN(data_hora) AS Smalldata_hora
+FROM usuario;
 
 
 -- AVG
 
 
 -- COUNT
+SELECT COUNT(endereco_email)
+FROM email
+WHERE login_usuario_email = 'victorluiz';
+
+SELECT COUNT(endereco_email)
+FROM email
+WHERE login_usuario_email = 'carlos_roberto1';
+
+SELECT COUNT(mensagem)
+FROM reply
+WHERE login_usuario_email = 'victorluiz'; -- tenho que ajeitar
 
 
 -- LEFT ou RIGHT ou FULL OUTER JOIN

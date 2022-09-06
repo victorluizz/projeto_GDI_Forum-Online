@@ -19,6 +19,9 @@ WHERE endereco_email = 'robinhojogador9@hotmail.com';
 -- SELECT - FROM - WHERE (outro arquivo)
 
 -- BETWEEN 
+SELECT nome
+FROM usuario 
+WHERE data_hora BETWEEN TO_DATE('02', 'mm') AND TO_DATE('04', 'mm');
 
 
 -- IN

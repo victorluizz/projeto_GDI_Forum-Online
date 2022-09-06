@@ -271,37 +271,37 @@ INSERT INTO secao (id_secao, titulo) VALUES (5, 'Animação');
 
 -- Povoamento de "cards_do_usuário"
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao) 
-VALUES ('victorluiz', 1, 'Filmes favoritos:', 'Meus filmes favoritos são: Corra, Shrek (todos) e A Culpa é das Estrelas');
+VALUES ('victorluiz', cards_usuario_seq.NEXTVAL, 'Filmes favoritos:', 'Meus filmes favoritos são: Corra, Shrek (todos) e A Culpa é das Estrelas');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('victorluiz', 2, 'Artistas favoritos:', 'Juliette, Anitta e Luisa Sonza');
+VALUES ('victorluiz', cards_usuario_seq.NEXTVAL, 'Artistas favoritos:', 'Juliette, Anitta e Luisa Sonza');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('romulodaniell2', 3, 'Frase:', 'Quando você ama, há o risco de odia -Naruto');
+VALUES ('romulodaniell2', cards_usuario_seq.NEXTVAL, 'Frase:', 'Quando você ama, há o risco de odia -Naruto');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('romulodaniell2', 4, 'Bandas favoritas', 'Taylor, Eve e Ariana');
+VALUES ('romulodaniell2', cards_usuario_seq.NEXTVAL, 'Bandas favoritas', 'Taylor, Eve e Ariana');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('romulodaniell2', 5, 'Manga favorito:', 'Solo Leveling');
+VALUES ('romulodaniell2', cards_usuario_seq.NEXTVAL, 'Manga favorito:', 'Solo Leveling');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('marcelo_anderson', 6, 'Card 1', 'Fã de filmes de terror.');
+VALUES ('marcelo_anderson', cards_usuario_seq.NEXTVAL, 'Card 1', 'Fã de filmes de terror.');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('fernanda_pascoal', 7, 'Card 1', 'Fã de cinema no geral, mas apaixonada por romances clichês.');
+VALUES ('fernanda_pascoal', cards_usuario_seq.NEXTVAL, 'Card 1', 'Fã de cinema no geral, mas apaixonada por romances clichês.');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('fernanda_pascoal', 8, 'Filme favorito no momento', 'A Culpa é das Estrelas');
+VALUES ('fernanda_pascoal', cards_usuario_seq.NEXTVAL, 'Filme favorito no momento', 'A Culpa é das Estrelas');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('carlos_roberto1', 9, 'Card 1', 'Fã de filmes no geral.');
+VALUES ('carlos_roberto1', cards_usuario_seq.NEXTVAL, 'Card 1', 'Fã de filmes no geral.');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('bruno_lima', 10, 'Filmes favs:', 'Fã de filmes de terror e ação.');
+VALUES ('bruno_lima', cards_usuario_seq.NEXTVAL, 'Filmes favs:', 'Fã de filmes de terror e ação.');
 
 INSERT INTO cards_do_usuario (login_usuario_card, numero, titulo, descricao)
-VALUES ('bruno_lima', 11, 'Artistas favs:', 'Tudo menos Beattles');
+VALUES ('bruno_lima', cards_usuario_seq.NEXTVAL, 'Artistas favs:', 'Tudo menos Beattles');
 
 
 -- THREADS

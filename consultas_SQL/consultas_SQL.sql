@@ -5,42 +5,41 @@ ALTER TABLE endereco
 
 -- CREATE INDEX
 
--- INSERT INTO
+-- INSERT INTO (outro arquivo)
 
 -- UPDATE
 UPDATE usuario
-    SET senha = 'victinholuiz'
-    WHERE login_usuario = 'victorluiz';
-
+SET senha = 'victinholuiz'
+WHERE login = 'victorluiz';
 
 -- DELETE
+DELETE FROM email
+WHERE endereco_email = 'robinhojogador9@hotmail.com';
 
-
--- SELECT - FROM - WHERE
-
--- select threads por secao 
-select * from thread_tabela where id_thread in (select id_thread_cria_thread from cria_thread where id_secao_cria_thread = 3);
-
--- select threads por criador
-select * from thread_tabela where id_thread in (select id_thread_cria_thread from cria_thread where login_usuario_cria_thread = 'victorluiz');
-
--- select replies por criador
-select * from reply where numero in (select numero_reply_cria_resposta from cria_resposta where login_usuario_cria_resposta = 'carlos_roberto1');
-
--- select replies por thread
-select * from reply where numero in (select numero_reply_cria_resposta from cria_resposta where id_thread_cria_resposta = 4);
-
+-- SELECT - FROM - WHERE (outro arquivo)
 
 -- BETWEEN 
 
 
 -- IN
-
+SELECT U.nome, E.estado
+FROM usuario U, endereco E
+WHERE E.estado IN ('Pernambuco', 'Paraíba') AND E.login_usuario_endereco = U.login;
 
 -- LIKE
+SELECT nome 
+FROM usuario
+WHERE nome LIKE 'Ro%';
 
 
 -- IS NULL ou IS NOT NULL
+SELECT login, nome 
+FROM usuario
+WHERE login IS NOT NULL;
+
+SELECT login, nome 
+FROM usuario
+WHERE login IS NULL;
 
 
 -- INNER JOIN

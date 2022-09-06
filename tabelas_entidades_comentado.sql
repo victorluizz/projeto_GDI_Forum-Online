@@ -139,3 +139,9 @@ CREATE SEQUENCE anexo_id_seq -- Criando uma sequência para a chave primária "i
     INCREMENT BY 1
     START WITH 1
     CACHE 50;
+
+CREATE SEQUENCE cards_usuario_seq -- Criando uma sequência para o atributo "numero" da tabela "anexo"
+    MINVALUE 1
+    INCREMENT BY 1
+    START WITH 1
+    CACHE 50;

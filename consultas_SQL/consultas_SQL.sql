@@ -50,6 +50,8 @@ SELECT CR.login_usuario_cria_resposta, reply.mensagem
 FROM cria_resposta CR
 INNER JOIN reply ON reply.numero = CR.numero_reply_cria_resposta;
 
+/*Retorna nome e login do moderador que moderou uma thread com um título específico 
+*/
 SELECT U.NOME, U.LOGIN
 FROM USUARIO U
 INNER JOIN MODERADOR M
@@ -100,6 +102,9 @@ GROUP BY T.titulo;
 
 
 -- LEFT ou RIGHT ou FULL OUTER JOIN
+
+/* Lista todos os usuários por ordem alfabética e suas respectivas threads criadas
+*/
 SELECT U.NOME, T.TITULO AS THREAD_CRIADA
 FROM USUARIO U
 LEFT OUTER JOIN CRIA_THREAD C
@@ -134,6 +139,9 @@ RIGHT JOIN cria_resposta ON T.id_thread = cria_resposta.id_thread_cria_resposta;
 
 
 -- SUBCONSULTA COM IN
+
+/*Verifica e retorna moderadores que não moderaram nenhuma thread
+*/
 SELECT *
 FROM MODERADOR
 WHERE LOGIN_MODERADOR
@@ -151,6 +159,9 @@ NOT IN (SELECT LOGIN_MODERADOR
 
 
 -- GROUP BY
+
+/* Agrupa moderador e quantidade de threads moderadas que foram criadas entre fevereiro e abril
+*/
 SELECT M.LOGIN_MODERADOR, COUNT(M.LOGIN_MODERADOR) AS QTDE_THREADS_MODERADAS_FEVEREIRO_ABRIL
 FROM MODERA_THREAD M
 INNER JOIN CRIA_THREAD C
@@ -159,10 +170,13 @@ WHERE C.DATA_HORA_THREAD BETWEEN TO_DATE ('02', 'mm') AND TO_DATE ('04', 'mm')
 GROUP BY M.LOGIN_MODERADOR;
 
 -- HAVING
+
+/* Retorna login_usuario especificos e a quantidade de vezes que foi banido 
+*/
 SELECT LOGIN_USUARIO_BANIDO, COUNT(LOGIN_USUARIO_BANIDO) AS QTDE_BANIMENTOS
 FROM BANE
 GROUP BY LOGIN_USUARIO_BANIDO
-HAVING LOGIN_USUARIO_BANIDO='gabriela_pinheiro';
+HAVING LOGIN_USUARIO_BANIDO='gabriela_pinheiro' OR LOGIN_USUARIO_BANIDO='fernanda_pascoal';
 
 -- UNION ou INTERSECT ou MINUS
 

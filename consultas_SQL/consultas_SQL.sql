@@ -76,17 +76,25 @@ FROM usuario;
 
 
 -- COUNT
+/*Contando quantos endereços de email o usuário "victorluiz" possui
+*/
+
 SELECT COUNT(endereco_email)
 FROM email
 WHERE login_usuario_email = 'victorluiz';
 
+/*Contando quantos endereços de email o usuário "carlos_roberto1" possui
+*/
 SELECT COUNT(endereco_email)
 FROM email
 WHERE login_usuario_email = 'carlos_roberto1';
 
-SELECT COUNT(mensagem)
-FROM reply
-WHERE login_usuario_email = 'victorluiz'; -- tenho que ajeitar
+/*Contando quantas replys cada thrad possui e exibindo o titulo delas.
+*/
+SELECT T.titulo, count(cria_resposta.id_thread_cria_resposta)
+FROM thread_tabela T, cria_resposta
+WHERE T.id_thread = cria_resposta.id_thread_cria_resposta
+GROUP BY T.titulo;
 
 
 -- LEFT ou RIGHT ou FULL OUTER JOIN
@@ -97,6 +105,27 @@ ON C.LOGIN_USUARIO_CRIA_THREAD = U.LOGIN
 LEFT OUTER JOIN THREAD_TABELA T
 ON C.ID_THREAD_CRIA_THREAD = T.ID_THREAD
 ORDER BY U.NOME;
+
+/* Consultando os usuários que são moderadores e qual é o ranking deles.
+*/
+SELECT U.nome, moderador.ranking
+FROM usuario U
+LEFT JOIN moderador ON U.login = moderador.login_moderador
+ORDER BY U.nome;
+
+/* Retorna o nome do usuário e o ID da thread em que ele criou alguma resposta.
+*/
+
+SELECT U.nome, cria_resposta.id_thread_cria_resposta
+FROM usuario U
+LEFT JOIN cria_resposta ON U.login = cria_resposta.login_usuario_cria_resposta
+ORDER BY U.nome;
+
+
+
+SELECT T.titulo, cria_resposta.id_thread_cria_resposta
+FROM thread_tabela T
+RIGHT JOIN cria_resposta ON T.id_thread = cria_resposta.id_thread_cria_resposta;
 
 
 -- SUBCONSULTA COM OPERADOR RELACIONAL

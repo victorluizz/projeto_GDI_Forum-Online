@@ -50,6 +50,16 @@ SELECT CR.login_usuario_cria_resposta, reply.mensagem
 FROM cria_resposta CR
 INNER JOIN reply ON reply.numero = CR.numero_reply_cria_resposta;
 
+SELECT U.NOME, U.LOGIN
+FROM USUARIO U
+INNER JOIN MODERADOR M
+ON M.LOGIN_MODERADOR = U.LOGIN
+INNER JOIN MODERA_THREAD MT
+ON MT.LOGIN_MODERADOR = M.LOGIN_MODERADOR
+INNER JOIN THREAD_TABELA T
+ON T.ID_THREAD = MT.ID_THREAD_MODERA_THREAD
+WHERE T.TITULO='encanto ganhou oscar';
+
 -- MAX
 SELECT MAX(numero_reply_cria_resposta) AS Largesnumero_reply_cria_resposta
 FROM cria_resposta;
@@ -86,6 +96,11 @@ WHERE login_usuario_email = 'victorluiz'; -- tenho que ajeitar
 
 
 -- SUBCONSULTA COM IN
+SELECT *
+FROM MODERADOR
+WHERE LOGIN_MODERADOR
+NOT IN (SELECT LOGIN_MODERADOR
+         FROM MODERA_THREAD);
 
 
 -- SUBCONSULTA COM ANY
@@ -98,7 +113,11 @@ WHERE login_usuario_email = 'victorluiz'; -- tenho que ajeitar
 
 
 -- GROUP BY
-
+SELECT M.LOGIN_MODERADOR, COUNT(M.LOGIN_MODERADOR)
+FROM MODERA_THREAD M
+INNER JOIN CRIA_THREAD C
+ON C.ID_THREAD_CRIA_THREAD = M.ID_THREAD_MODERA_THREAD
+GROUP BY M.LOGIN_MODERADOR;
 
 -- HAVING
 

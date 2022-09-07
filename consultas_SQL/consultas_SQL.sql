@@ -73,6 +73,8 @@ FROM usuario;
 
 
 -- AVG
+SELECT avg(cria_resposta.id_thread_cria_resposta) AS Media_de_Respostas
+FROM cria_resposta;
 
 
 -- COUNT

@@ -168,6 +168,3 @@ HAVING LOGIN_USUARIO_BANIDO='gabriela_pinheiro';
 
 
 -- CREATE VIEW
-
-
--- GRANT / REVOKE

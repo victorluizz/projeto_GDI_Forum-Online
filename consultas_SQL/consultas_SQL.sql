@@ -5,6 +5,11 @@ ALTER TABLE endereco
 
 -- CREATE INDEX
 
+/*Criando um indice para a tabela de usuários pois constantemente fazemos consultas nela.
+*/
+CREATE INDEX idx_nome
+ON usuario (nome);
+
 -- INSERT INTO (outro arquivo)
 
 -- UPDATE
@@ -13,16 +18,25 @@ SET senha = 'victinholuiz'
 WHERE login = 'victorluiz';
 
 -- DELETE
+/*Deletando um dos endereços de email do usuário 'robinho'.
+*/
 DELETE FROM email
 WHERE endereco_email = 'robinhojogador9@hotmail.com';
 
 -- SELECT - FROM - WHERE (outro arquivo)
 
 -- BETWEEN 
+/*Consultando usuáruios que se cadastraram entre o mês de Fevereiro e Abril.
+*/
 SELECT nome
 FROM usuario 
 WHERE data_hora BETWEEN TO_DATE('02', 'mm') AND TO_DATE('04', 'mm');
 
+/*Consultando os usuários que responderam alguma thread entre Fevereiro e Abril.
+*/
+SELECT CR.login_usuario_cria_resposta,  CR.id_thread_cria_resposta
+FROM cria_resposta CR
+WHERE CR.data_hora_cria_resposta BETWEEN TO_DATE('02', 'mm') AND TO_DATE('04', 'mm');
 
 -- IN
 SELECT U.nome, E.estado
@@ -30,9 +44,26 @@ FROM usuario U, endereco E
 WHERE E.estado IN ('Pernambuco', 'Paraíba') AND E.login_usuario_endereco = U.login;
 
 -- LIKE
+
+/*Consultando todos os usuários que possuem o nome iniciando com "Ro".
+*/
 SELECT nome 
 FROM usuario
 WHERE nome LIKE 'Ro%';
+
+/*Consultando os usuáros que possuem a letra "A" na segunda letra do nome.
+*/
+SELECT nome 
+FROM usuario
+WHERE nome LIKE '_a%';
+
+/*Consultando os moderadores que possuem a inicial do nome "A" e quais seções ele modera
+ordenando pelo título da seção.
+*/
+SELECT S.titulo, U.nome, MS.login_moderador, MS.id_secao_modera_secao
+FROM usuario U, modera_secao MS, secao S
+WHERE MS.login_moderador LIKE 'a%' AND U.login = MS.login_moderador AND S.id_secao = MS.id_secao_modera_secao
+ORDER BY S.titulo;
 
 
 -- IS NULL ou IS NOT NULL
@@ -63,18 +94,22 @@ ON T.ID_THREAD = MT.ID_THREAD_MODERA_THREAD
 WHERE T.TITULO='encanto ganhou oscar';
 
 -- MAX
-SELECT MAX(numero_reply_cria_resposta) AS Largesnumero_reply_cria_resposta
-FROM cria_resposta;
 
+/*Consultando qual a data o usuário mais recente se cadastrou no fórum.
+*/
 SELECT MAX(data_hora) AS Largesdata_hora
 FROM usuario;
 
 -- MIN
+/*Consultando qual a data o usuário mais antigo se cadastrou no fórum.
+*/
 SELECT MIN(data_hora) AS Smalldata_hora
 FROM usuario;
 
 
 -- AVG
+/* Média de respostas em todos as threads. (precisa rever, acho que ta errado)
+*/
 SELECT avg(cria_resposta.id_thread_cria_resposta) AS Media_de_Respostas
 FROM cria_resposta;
 
@@ -101,7 +136,7 @@ WHERE T.id_thread = cria_resposta.id_thread_cria_resposta
 GROUP BY T.titulo;
 
 
--- LEFT ou RIGHT ou FULL OUTER JOIN
+-- LEFT ou RIGHT ou FULL OUTER JOIN // ORDER BY
 
 /* Lista todos os usuários por ordem alfabética e suas respectivas threads criadas
 */
@@ -113,14 +148,14 @@ LEFT OUTER JOIN THREAD_TABELA T
 ON C.ID_THREAD_CRIA_THREAD = T.ID_THREAD
 ORDER BY U.NOME;
 
-/* Consultando os usuários que são moderadores e qual é o ranking deles.
+/* Consultando os usuários que são moderadores e qual é o ranking deles ordenados pelo nome.
 */
 SELECT U.nome, moderador.ranking
 FROM usuario U
 LEFT JOIN moderador ON U.login = moderador.login_moderador
 ORDER BY U.nome;
 
-/* Retorna o nome do usuário e o ID da thread em que ele criou alguma resposta.
+/* Retorna o nome do usuário e o ID da thread em que ele criou alguma resposta ordenados pelo nome.
 */
 
 SELECT U.nome, cria_resposta.id_thread_cria_resposta
@@ -136,6 +171,12 @@ RIGHT JOIN cria_resposta ON T.id_thread = cria_resposta.id_thread_cria_resposta;
 
 
 -- SUBCONSULTA COM OPERADOR RELACIONAL
+/*Consultando todos os usuários que não moram em pernambuco e exibindo os estados dos mesmos.
+*/
+SELECT U.nome, U.login, E.estado 
+FROM usuario U, endereco E
+WHERE  E.estado <> ('Pernambuco') AND U.login = E.login_usuario_endereco
+ORDER BY E.estado;
 
 
 -- SUBCONSULTA COM IN
@@ -151,12 +192,31 @@ NOT IN (SELECT LOGIN_MODERADOR
 
 -- SUBCONSULTA COM ANY
 
+/*Consultando usuários que são do estado da Paraíba.
+*/
+SELECT nome 
+FROM usuario
+WHERE login = ANY 
+    (SELECT login_usuario_endereco
+    FROM endereco 
+    WHERE estado = 'Paraíba');
+
+/*Consultando usuários que são do estado da Pernambuco.
+*/
+SELECT nome 
+FROM usuario U
+WHERE login = ANY 
+    (SELECT login_usuario_endereco
+    FROM endereco 
+    WHERE estado = 'Pernambuco');
 
 -- SUBCONSULTA COM ALL
-
-
--- ORDER BY
-
+SELECT nome 
+FROM usuario U
+WHERE login = ALL
+    (SELECT login_usuario_endereco
+    FROM endereco 
+    WHERE estado = 'Pernambuco');
 
 -- GROUP BY
 

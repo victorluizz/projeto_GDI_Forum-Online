@@ -239,6 +239,15 @@ GROUP BY LOGIN_USUARIO_BANIDO
 HAVING LOGIN_USUARIO_BANIDO='gabriela_pinheiro' OR LOGIN_USUARIO_BANIDO='fernanda_pascoal';
 
 -- UNION ou INTERSECT ou MINUS
-
+SELECT titulo FROM thread_tabela
+UNION
+SELECT login_usuario_cria_thread FROM cria_thread;
 
 -- CREATE VIEW
+/*Criando uma "view" para todos os usuários que moram em pernambuco
+*/
+CREATE VIEW Pernambucanos AS
+SELECT E.estado, U.nome
+FROM endereco E, usuario U
+WHERE E.login_usuario_endereco = U.login 
+    AND E.estado = 'Pernambuco';

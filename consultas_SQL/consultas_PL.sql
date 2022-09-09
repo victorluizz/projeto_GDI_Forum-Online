@@ -2,14 +2,11 @@
 -- 2. USO DE ESTRUTURA DE DADOS DO TIPO TABLE
 -- 3. BLOCO ANÔNIMO
 -- 7. %ROWTYPE
--- 8. IF ELSIF
 -- 9. CASE WHEN
 -- 10. LOOP EXIT WHEN
 -- 11. WHILE LOOP
 -- 12. FOR IN LOOP
 -- 14. CURSOR (OPEN, FETCH e CLOSE)
--- 19. CREATE OR REPLACE TRIGGER (COMANDO)
--- 20. CREATE OR REPLACE TRIGGER (LINHA)
 
 
 -- trigger, if 
@@ -35,20 +32,8 @@ BEGIN
     return retorno;
 END UltimaPostagem;
 /
---SELECT UltimaPostagem from dual;
 
-
--- NAO TA FUNCIONANDO
-CREATE OR REPLACE FUNCTION UltimaAtividade RETURN
-TIMESTAMP IS
-retorno TIMESTAMP;
-BEGIN
-    select max(data_hora_thread) into retorno from cria_thread;
-    return retorno;
-END UltimaAtividade;
-/
-
-SELECT UltimaAtividade from dual;
+--SELECT UltimaAtividade from dual;
 
 CREATE OR REPLACE TRIGGER SpamDetection before update on thread_tabela
 FOR EACH ROW
@@ -99,4 +84,4 @@ END NovaPostagem;-- NovaPostagem;
 END UsuarioPackage;
 /
 
-EXEC UsuarioPackage.NovaPostagem('victorluiz', 1, 'titulo teste', 'mensagem teste ');
+--EXEC UsuarioPackage.NovaPostagem('victorluiz', 1, 'titulo teste', 'mensagem teste ');

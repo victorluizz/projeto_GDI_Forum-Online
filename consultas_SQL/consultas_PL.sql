@@ -172,3 +172,41 @@ END;
 /
 /*TESTE*/
     DELETE FROM THREAD_TABELA WHERE TITULO LIKE 'Lancamentos de COMEDIA';
+
+
+--  for in loop (print moderadores)
+declare
+    eq binary_integer;
+begin
+    dbms_output.put_line('nao moderadores:');
+    for func_cur in (select login FROM usuario) loop
+        eq := 0;
+        for func_mod in (select login_moderador FROM moderador) loop
+            if func_mod.login_moderador = func_cur.login then
+                eq := eq + 1;
+            end if;
+        end loop;
+        if eq = 0 then
+            dbms_output.put_line(func_cur.login);
+        end if;
+    end loop;
+end;
+/
+
+declare
+    eq binary_integer;
+begin
+    dbms_output.put_line('moderadores:');
+    for func_cur in (select login FROM usuario) loop
+        eq := 0;
+        for func_mod in (select login_moderador FROM moderador) loop
+            if func_mod.login_moderador = func_cur.login then
+                eq := eq + 1;
+            end if;
+        end loop;
+        if eq > 0 then
+            dbms_output.put_line(func_cur.login);
+        end if;
+    end loop;
+end;
+/

@@ -85,3 +85,59 @@ END UsuarioPackage;
 /
 
 --EXEC UsuarioPackage.NovaPostagem('victorluiz', 1, 'titulo teste', 'mensagem teste ');
+
+--TRIGGER, RECORD
+/*
+(Antes de deletar uma thread da THREAD_TABELA, o trigger deleta todas as ocorrencias nas tabelas: CRIA_THREAD, MODERA_THREAD E CRIA_RESPOSTA
+e salva os dados e a data de quando foi deletada em um record)
+*/
+CREATE OR REPLACE TRIGGER DELETOU
+BEFORE DELETE ON THREAD_TABELA
+FOR EACH ROW
+DECLARE
+LOGIN CRIA_THREAD.LOGIN_USUARIO_CRIA_THREAD%TYPE;
+ID_SECAO CRIA_THREAD.ID_SECAO_CRIA_THREAD%TYPE;
+ID_THREAD CRIA_THREAD.ID_THREAD_CRIA_THREAD%TYPE;
+DATA_HORA CRIA_THREAD.DATA_HORA_THREAD%TYPE;
+
+TYPE THREAD_ARQUIVADA is record
+    (login_usuario_arq_thread VARCHAR2(30)
+    ,id_secao_arq_thread NUMBER
+    ,id_thread_arq_thread NUMBER
+    ,data_hora_thread DATE);
+THREAD_ARQ THREAD_ARQUIVADA;
+date1 DATE;
+pragma autonomous_transaction;
+
+
+BEGIN
+
+    SELECT LOGIN_USUARIO_CRIA_THREAD, ID_SECAO_CRIA_THREAD,	ID_THREAD_CRIA_THREAD INTO LOGIN, ID_SECAO, ID_THREAD
+    FROM CRIA_THREAD CT
+    INNER JOIN THREAD_TABELA T
+    ON CT.ID_THREAD_CRIA_THREAD = T.ID_THREAD
+    WHERE CT.ID_THREAD_CRIA_THREAD = :OLD.ID_THREAD;
+    
+    DELETE FROM CRIA_THREAD WHERE ID_THREAD_CRIA_THREAD	 = ID_THREAD; 
+    COMMIT;
+    DELETE FROM MODERA_THREAD WHERE ID_THREAD_MODERA_THREAD = ID_THREAD; 
+    COMMIT;
+    DELETE FROM CRIA_RESPOSTA WHERE id_thread_cria_resposta = ID_THREAD; 
+    COMMIT;
+
+    
+    date1 := CURRENT_TIMESTAMP();
+    THREAD_ARQ.login_usuario_arq_thread := LOGIN;
+    THREAD_ARQ.id_secao_arq_thread := ID_SECAO;
+    THREAD_ARQ.id_thread_arq_thread := ID_THREAD;
+    THREAD_ARQ.data_hora_thread := date1;
+    
+    DBMS_OUTPUT.PUT_LINE('login: '|| THREAD_ARQ.login_usuario_arq_thread);
+    DBMS_OUTPUT.PUT_LINE('id da secao: '|| THREAD_ARQ.id_secao_arq_thread);
+    DBMS_OUTPUT.PUT_LINE('id da thread: '|| THREAD_ARQ.id_thread_arq_thread);
+    DBMS_OUTPUT.PUT_LINE('data e hora: '|| THREAD_ARQ.data_hora_thread);
+    
+END;
+/
+/*TESTE*/
+    DELETE FROM THREAD_TABELA WHERE TITULO LIKE 'Lancamentos de COMEDIA';

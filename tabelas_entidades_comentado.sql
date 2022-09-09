@@ -40,7 +40,7 @@ CREATE TABLE cards_do_usuario(
     ,titulo VARCHAR2(40)
     ,descricao VARCHAR2(200)
      ,CONSTRAINT cards_do_usuario_pkey PRIMARY KEY (login_usuario_card, numero) -- Definindo "login_usuario_card" e "numero" como Chave Primária Composta da tabela "cards_do_usuario"
-    ,CONSTRAINT login_usuario_card_pkey FOREIGN KEY (login_usuario_card) REFERENCES usuario(login) -- Referenciando "login_usuario_card" como Chave Estrangeira na tabela "cards_do_usuario"
+    ,CONSTRAINT login_usuario_card_fkey FOREIGN KEY (login_usuario_card) REFERENCES usuario(login) -- Referenciando "login_usuario_card" como Chave Estrangeira na tabela "cards_do_usuario"
     );
 
 CREATE TABLE thread_tabela(

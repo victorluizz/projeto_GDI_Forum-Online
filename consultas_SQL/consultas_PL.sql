@@ -11,6 +11,22 @@
 -- 19. CREATE OR REPLACE TRIGGER (COMANDO)
 -- 20. CREATE OR REPLACE TRIGGER (LINHA)
 
+
+-- trigger, if 
+CREATE OR REPLACE TRIGGER SpamDetection before insert on thread_tabela
+FOR EACH ROW
+declare qtd number;
+BEGIN
+
+    select count(*) into qtd from thread_tabela where titulo = :NEW.titulo;
+    if qtd !=0 then
+        :NEW.titulo := 'SPAM';
+    elsif :NEW.titulo is null then
+        :NEW.titulo := 'Sem Titulo';
+    end if;
+END SpamDetection;
+/
+
 -- CREATE FUNCTION
 CREATE OR REPLACE FUNCTION UltimaPostagem RETURN TIMESTAMP IS
 retorno TIMESTAMP;

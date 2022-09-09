@@ -534,8 +534,8 @@ INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES
 
 INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 1, 'Fechou');
 INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 2, 'Editou');
-INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 3, 'Arqivou');
-INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 4, 'Dexfixou');
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 3, 'Arquivou');
+INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('botan', 4, 'Desfixou');
 
 INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('karenn_', 4, 'Editou');
 INSERT INTO modera_thread(login_moderador, id_thread_modera_thread, acao) VALUES ('karenn_', 5, 'Editou');

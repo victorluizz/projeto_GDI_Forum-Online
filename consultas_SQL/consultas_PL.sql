@@ -2,7 +2,6 @@
 -- 2. USO DE ESTRUTURA DE DADOS DO TIPO TABLE
 -- 3. BLOCO ANÔNIMO
 -- 7. %ROWTYPE
--- 9. CASE WHEN
 -- 10. LOOP EXIT WHEN
 -- 11. WHILE LOOP
 -- 12. FOR IN LOOP
@@ -25,6 +24,38 @@ END SpamDetection;
 /
 
 -- CREATE FUNCTION
+
+-- if then else(?)
+CREATE OR REPLACE FUNCTION IsAdmin (in_moderator_ranking NATURAL) 
+    RETURN BOOLEAN
+IS
+result BOOLEAN;
+BEGIN
+    IF in_moderator_ranking == 1 THEN
+        result := TRUE;
+    ELSE
+        result := FALSE;
+    END IF;
+    RETURN result;
+END IsAdmin;
+/
+
+-- case (?)
+CREATE OR REPLACE FUNCTION ModType (in_moderator_ranking NATURAL)
+    RETURN VARCHAR2(9)
+IS
+result VARCHAR2;
+BEGIN
+    CASE in_moderator_ranking
+        WHEN 1 THEN result := "Admin";
+        WHEN 2 THEN result := "Modplus";
+        WHEN 3 THEN result := "Moderator";
+        WHEN 4 THEN result := "Helper";
+    END CASE;
+    RETURN result;
+END
+/
+
 CREATE OR REPLACE FUNCTION UltimaPostagem RETURN TIMESTAMP IS
 retorno TIMESTAMP;
 BEGIN

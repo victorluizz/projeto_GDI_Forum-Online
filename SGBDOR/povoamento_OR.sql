@@ -183,6 +183,7 @@ INSERT INTO tb_usuarios VALUES (
     )
 );
 
+
 -- Povoamento da tabela tb_moderador
 insert into tb_moderadores values(
     tp_moderador(
@@ -271,7 +272,6 @@ INSERT INTO tb_moderadores VALUES (
     )
 );
 
-
 INSERT INTO tb_moderadores VALUES (
     tp_moderador( 
     'romulodaniell2', 
@@ -292,3 +292,96 @@ INSERT INTO tb_moderadores VALUES (
     4
     )
 );
+
+-- Povoamento da tabela "envia_mensagem"
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='victorluizz'),
+    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    TIMESTAMP'2022-01-13 22:30:14.23',
+    'ja assistiu corra?',
+    1
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
+    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    TIMESTAMP'2022-01-13 22:32:12.44',
+    'sim, curti bastante',
+    2
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
+    (select ref (R) from tb_moderadores R where R.login ='karenn_'),
+    TIMESTAMP'2022-03-15 10:30:11.55',
+    'me indica um filme?',
+    3
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
+    (select ref (R) from tb_moderadores R where R.login ='karenn_'),
+    TIMESTAMP'2022-03-15 10:31:12.43',
+    'um de terror, de preferencia',
+    4
+));
+
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_moderadores E where E.login ='karenn_'),
+    (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
+    TIMESTAMP'2022-03-15 10:36:11.22',
+    'vixi, nao conheco mts',
+    5
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
+    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    TIMESTAMP'2022-03-04 23:45:33.12',
+    'escuta essa musica:',
+    6
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
+    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    TIMESTAMP'2022-03-04 23:45:33.12',
+    'escuta essa musica:',
+    7
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
+    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    TIMESTAMP'2022-03-14 23:10:53.12',
+    'olha isso',
+    8
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where E.login ='carlos_roberto1'),
+    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    TIMESTAMP'2022-05-14 23:34:44.45',
+    'aqui o link que falei no topico',
+    9
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_moderadores E where E.login ='karenn_'),
+    (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
+    TIMESTAMP'2022-04-01 11:32:13.14',
+    'escuta essa musica:',
+    10
+));

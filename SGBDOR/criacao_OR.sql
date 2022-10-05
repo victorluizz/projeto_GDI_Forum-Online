@@ -289,47 +289,6 @@ CREATE TABLE tb_modera_thread OF tp_modera_thread(
 /
 
 -- TESTE POVOAMENTO
--- USUARIOS
-insert into tb_usuarios values(
-    tp_usuario(
-    'carlos',
-    null,
-    '123',
-    'Carlos Pereira',
-    'aaa',
-    tp_endereco(
-        15,
-        '321321321',
-        'Pernambuco',
-        'rua do reitor',
-        'Recife'
-        )
-    ,
-    tp_emails(tp_email('email1@gmail.com'),tp_email('email2@hotmail.com')),
-    tp_lista_cards()
-    )
-);
-
-insert into tb_usuarios values(
-    tp_usuario(
-    'victor',
-    null,
-    '555',
-    'Victor Luiz',
-    'aaaB',
-    tp_endereco(
-        15,
-        '456789123',
-        'Pernambuco',
-        'rua do reitor',
-        'Recife'
-        )
-    ,
-    tp_emails(tp_email('victor@gmail.com'),tp_email('victor@hotmail.com')),
-    tp_lista_cards()
-    )
-);
-
 insert into tb_moderadores values(
     tp_moderador(
     'Joao',

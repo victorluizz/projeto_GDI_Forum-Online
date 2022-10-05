@@ -231,10 +231,11 @@ CREATE OR REPLACE TYPE tp_bane AS OBJECT(
 
 CREATE TABLE tb_bane OF tp_bane;
 
+-- ENVIA_MENSAGEM
 
 CREATE OR REPLACE TYPE tp_envia_mensagem AS OBJECT(
-    login_envia REF tp_usuario,
-    login_recebe REF tp_usuario,
+    login_envia REF tp_pessoa,
+    login_recebe REF tp_pessoa,
     data_hora TIMESTAMP,
     texto VARCHAR2(300),
     numero NUMBER

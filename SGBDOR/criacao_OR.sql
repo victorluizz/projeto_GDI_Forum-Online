@@ -6,7 +6,15 @@ drop table tb_threads;
 drop table tb_cria_thread;
 drop table tb_cria_reply;
 drop table tb_bane;
+drop table tb_anexos;
+drop table tb_envia_mensagem;
+drop table tb_modera_thread;
+drop table tb_modera_secao;
 
+drop type tp_modera_thread;
+drop type tp_modera_secao;
+drop type tp_anexo;
+drop type tp_envia_mensagem;
 drop type tp_bane;
 drop type tp_cria_thread;
 drop type tp_cria_reply;
@@ -150,9 +158,61 @@ CREATE OR REPLACE TYPE tp_bane AS OBJECT(
 CREATE TABLE tb_bane OF tp_bane;
 
 
+CREATE OR REPLACE TYPE tp_envia_mensagem AS OBJECT(
+    login_envia REF tp_usuario,
+    login_recebe REF tp_usuario,
+    data_hora TIMESTAMP,
+    texto VARCHAR2(300),
+    numero NUMBER
+);
+/
 
+CREATE TABLE tb_envia_mensagem OF tp_envia_mensagem(
+    numero primary key
+);
+/
 
+-- ANEXOS
 
+CREATE OR REPLACE TYPE tp_anexo AS OBJECT(
+    numero_msg REF tp_envia_mensagem,
+    link_anexo VARCHAR2(200),
+    id_anexo NUMBER
+);
+/
+
+CREATE TABLE tb_anexos OF tp_anexo(
+    id_anexo primary key
+);
+/
+
+-- MODERACAO
+
+CREATE OR REPLACE TYPE tp_modera_secao AS OBJECT(
+    login_moderador REF tp_moderador,
+    id_secao REF tp_secao,
+    id_modera_secao NUMBER
+);
+/
+CREATE TABLE tb_modera_secao OF tp_modera_secao(
+    id_modera_secao primary key
+);
+/
+
+--CREATE TABLE tb_modera_secao of tp_
+
+CREATE OR REPLACE TYPE tp_modera_thread AS OBJECT(
+    login_moderador REF tp_moderador,
+    id_thread REF tp_thread,
+    acao VARCHAR2(30),
+    id_modera NUMBER
+);
+/
+
+CREATE TABLE tb_modera_thread OF tp_modera_thread(
+    id_modera primary key
+);
+/
 
 -- TESTE POVOAMENTO
 -- USUARIOS
@@ -226,6 +286,44 @@ INSERT INTO TABLE (SELECT U.lista_cards FROM tb_usuarios U WHERE
 U.login = 'carlos') T VALUES (tp_card_usuario (2, 'Xau!', 'boa noite!'));
 /
 
+-- MENSAGENS
+    
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where login ='carlos'),
+    (select ref (R) from tb_usuarios R where login ='victor'),
+    null,
+    'me empresta tua conta do netflix',
+    1
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where login ='victor'),
+    (select ref (R) from tb_usuarios R where login ='carlos'),
+    null,
+    'NAO',
+    2
+));
+
+INSERT INTO tb_envia_mensagem
+VALUES (tp_envia_mensagem
+(   (select ref (E) from tb_usuarios E where login ='victor'),
+    (select ref (R) from tb_usuarios R where login ='carlos'),
+    null,
+    'Cria uma conta pra tu',
+    3
+));
+
+-- ANEXOS
+INSERT INTO tb_anexos VALUES (tp_anexo
+(
+    (select ref (M) from tb_envia_mensagem M where numero = 3),
+    'netflix.com',
+    1
+
+));
+
 
 -- SECOES
 insert into tb_secoes values(
@@ -271,6 +369,35 @@ insert into tb_cria_thread values(
     null
 );
 
+-- MODERACAO
+
+INSERT INTO tb_modera_secao VALUES(
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'Joao'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 1),
+    1
+);
+INSERT INTO tb_modera_secao VALUES(
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'Joao'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 2),
+    2
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'Joao'),
+    (SELECT REF (T) FROM tb_threads T WHERE id_thread = 2),
+    'editar',
+    1
+);
+
+
+--CREATE OR REPLACE TYPE tp_modera_thread AS OBJECT(
+--    login_moderador REF tp_moderador,
+--    id_thread REF tp_thread,
+--    acao VARCHAR2(30),
+--    id_modera
+--);
+--/
+
 
 select * from tb_usuarios;
 select U.login, U.data_hora, U.senha, U.nome, u.foto_de_perfil, (U.endereco).cep, (U.endereco).estado,
@@ -280,6 +407,11 @@ SELECT E.endereco_email carlos_emails FROM tb_usuarios U, TABLE (U.emails) E WHE
 
 SELECT 'carlos' as Usuario_Cards, T.numero, T.titulo, T.descricao FROM TABLE (SELECT U.lista_cards FROM tb_usuarios U WHERE U.login = 'carlos') T;
 /
+
+SELECT DEREF(M.login_envia).login as login_envia, DEREF(M.login_recebe).login as login_recebe, M.data_hora, M.texto, M.numero FROM tb_envia_mensagem M;
+SELECT DEREF(DEREF(A.numero_msg).login_envia).login as login_envia, DEREF(DEREF(A.numero_msg).login_recebe).login as login_recebe, DEREF(A.numero_msg).texto as mensagem, A.link_anexo, A.id_anexo FROM tb_anexos A;
+SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_secao).titulo as SECAO_TITULO, M.id_modera_secao FROM tb_modera_secao M; 
+SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_thread).titulo as THREAD_TITULO, M.acao, M.id_modera FROM tb_modera_thread M; 
 
 select * from tb_moderadores;
 select * from tb_secoes;

@@ -171,11 +171,11 @@ CREATE TABLE tb_secoes OF tp_secao(
 
 -- CRIACAO DE POSTAGEM (TERNARIO)
 CREATE OR REPLACE TYPE tp_cria_thread AS OBJECT(
+    id_cria_thread number,
     login REF tp_usuario,
     id_thread REF tp_thread,
     id_secao REF tp_secao,
     data_hora TIMESTAMP,
-    id_cria_thread number,
     ORDER MEMBER FUNCTION compara_data(t tp_cria_thread) RETURN INTEGER
 );
 /
@@ -206,11 +206,11 @@ CREATE TABLE tb_cria_thread OF tp_cria_thread(
 
 -- CRIACAO DE REPLY (TERNARIO)
 CREATE OR REPLACE TYPE tp_cria_reply AS OBJECT(
+    id_cria_reply number,
     login REF tp_usuario,
     id_thread REF tp_thread,
     numero REF tp_reply,
-    data_hora TIMESTAMP,
-    id_cria_reply number
+    data_hora TIMESTAMP
 );
 /
 
@@ -234,11 +234,11 @@ CREATE TABLE tb_bane OF tp_bane;
 -- ENVIA_MENSAGEM
 
 CREATE OR REPLACE TYPE tp_envia_mensagem AS OBJECT(
+    numero NUMBER,
     login_envia REF tp_pessoa,
     login_recebe REF tp_pessoa,
     data_hora TIMESTAMP,
-    texto VARCHAR2(300),
-    numero NUMBER
+    texto VARCHAR2(300)
 );
 /
 
@@ -250,9 +250,10 @@ CREATE TABLE tb_envia_mensagem OF tp_envia_mensagem(
 -- ANEXOS
 
 CREATE OR REPLACE TYPE tp_anexo AS OBJECT(
+    id_anexo NUMBER,
     numero_msg REF tp_envia_mensagem,
-    link_anexo VARCHAR2(200),
-    id_anexo NUMBER
+    link_anexo VARCHAR2(200)
+    
 );
 /
 
@@ -264,9 +265,9 @@ CREATE TABLE tb_anexos OF tp_anexo(
 -- MODERACAO
 
 CREATE OR REPLACE TYPE tp_modera_secao AS OBJECT(
+    id_modera_secao NUMBER,
     login_moderador REF tp_moderador,
-    id_secao REF tp_secao,
-    id_modera_secao NUMBER
+    id_secao REF tp_secao
 );
 /
 CREATE TABLE tb_modera_secao OF tp_modera_secao(
@@ -277,10 +278,10 @@ CREATE TABLE tb_modera_secao OF tp_modera_secao(
 --CREATE TABLE tb_modera_secao of tp_
 
 CREATE OR REPLACE TYPE tp_modera_thread AS OBJECT(
+    id_modera NUMBER,
     login_moderador REF tp_moderador,
     id_thread REF tp_thread,
-    acao VARCHAR2(30),
-    id_modera NUMBER
+    acao VARCHAR2(30)
 );
 /
 

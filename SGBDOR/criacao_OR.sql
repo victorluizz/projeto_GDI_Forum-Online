@@ -15,9 +15,10 @@ drop type tp_usuario;
 drop type tp_endereco;
 drop type tp_emails;
 drop type tp_email;
+drop type tp_lista_cards;
+drop type tp_card_usuario;
 
-
--- USUARIOS
+-- EMAILS
 CREATE OR REPLACE TYPE tp_email AS OBJECT (
     endereco_email VARCHAR2(50)
 );
@@ -26,48 +27,63 @@ CREATE OR REPLACE TYPE tp_email AS OBJECT (
 CREATE OR REPLACE TYPE tp_emails AS VARRAY(5) OF tp_email;
 /
 
+-- ENDERECO
 CREATE OR REPLACE TYPE tp_endereco AS OBJECT (
-    numero NUMBER
-    ,cep VARCHAR(9)
-    ,estado VARCHAR2(20)
-    ,rua VARCHAR2(50)
-    ,cidade VARCHAR2(30) 
+    numero NUMBER,
+    cep VARCHAR(9),
+    estado VARCHAR2(20),
+    rua VARCHAR2(50),
+    cidade VARCHAR2(30) 
 );
 /
 
+-- CARDS
+CREATE OR REPLACE TYPE tp_card_usuario AS OBJECT(
+    numero NUMBER,
+    titulo VARCHAR2(40),
+    descricao VARCHAR2(200)
+);
+/
+
+CREATE TYPE tp_lista_cards AS TABLE OF tp_card_usuario;
+/
+
+-- USUARIOS
 CREATE OR REPLACE TYPE tp_usuario AS OBJECT (
-    login VARCHAR2(30)
-    ,data_hora DATE 
-    ,senha VARCHAR2(30)
-    ,nome VARCHAR2(50)
-    ,foto_de_perfil  VARCHAR2(200),
+    login VARCHAR2(30),
+    data_hora DATE ,
+    senha VARCHAR2(30),
+    nome VARCHAR2(50),
+    foto_de_perfil  VARCHAR2(200),
     endereco tp_endereco,
-    emails tp_emails
+    emails tp_emails,
+    lista_cards tp_lista_cards
 ) NOT FINAL;
 /
 
+-- MODERADOR
 CREATE OR REPLACE TYPE tp_moderador UNDER tp_usuario (
     ranking number
 );
 /
 
 
-CREATE TABLE tb_usuarios OF tp_usuario (
+CREATE TABLE tb_usuarios OF tp_usuario(
     login primary key
-);
+)  NESTED TABLE lista_cards STORE AS nt_cards;
 /
 
-CREATE TABLE tb_moderadores OF tp_moderador (
+CREATE TABLE tb_moderadores OF tp_moderador(
     login primary key
-);
+) NESTED TABLE lista_cards STORE AS nt_cards2;
 /
 
 
 -- THREADS
 CREATE OR REPLACE TYPE tp_thread AS OBJECT(
-    id_thread NUMBER
-    ,titulo VARCHAR2(50)
-    ,texto VARCHAR2(300)  
+    id_thread NUMBER,
+    titulo VARCHAR2(50),
+    texto VARCHAR2(300)  
 );
 /
 
@@ -78,8 +94,8 @@ CREATE TABLE tb_threads OF tp_thread(
 
 -- REPLIES
 CREATE OR REPLACE TYPE tp_reply AS OBJECT(
-    numero NUMBER
-    ,mensagem VARCHAR2(300)
+    numero NUMBER,
+    mensagem VARCHAR2(300)
 );
 /
 
@@ -90,8 +106,8 @@ CREATE TABLE tb_replies OF tp_reply(
 
 -- SECOES
 CREATE OR REPLACE TYPE tp_secao AS OBJECT (
-    id_secao NUMBER
-    ,titulo VARCHAR2(40)
+    id_secao NUMBER,
+    titulo VARCHAR2(40)
 );
 /
 
@@ -137,7 +153,9 @@ CREATE TABLE tb_bane OF tp_bane;
 
 
 
--- testes povoamento
+
+-- TESTE POVOAMENTO
+-- USUARIOS
 insert into tb_usuarios values(
     tp_usuario(
     'carlos',
@@ -153,7 +171,9 @@ insert into tb_usuarios values(
         'Recife'
         )
     ,
-    tp_emails(tp_email('email1@gmail.com'),tp_email('email2@hotmail.com')))
+    tp_emails(tp_email('email1@gmail.com'),tp_email('email2@hotmail.com')),
+    tp_lista_cards()
+    )
 );
 
 insert into tb_usuarios values(
@@ -171,7 +191,9 @@ insert into tb_usuarios values(
         'Recife'
         )
     ,
-    tp_emails(tp_email('victor@gmail.com'),tp_email('victor@hotmail.com')))
+    tp_emails(tp_email('victor@gmail.com'),tp_email('victor@hotmail.com')),
+    tp_lista_cards()
+    )
 );
 
 insert into tb_moderadores values(
@@ -190,9 +212,22 @@ insert into tb_moderadores values(
         )
     ,
     tp_emails(tp_email('joaomod@gmail.com'),tp_email('joaomod2@hotmail.com')),
-    1)
+    tp_lista_cards(),
+    1
+    )
 );
 
+-- CARDS
+INSERT INTO TABLE (SELECT U.lista_cards FROM tb_usuarios U WHERE
+U.login = 'carlos') T VALUES (tp_card_usuario (1, 'Ola!', 'tenha um bom dia'));
+/
+
+INSERT INTO TABLE (SELECT U.lista_cards FROM tb_usuarios U WHERE
+U.login = 'carlos') T VALUES (tp_card_usuario (2, 'Xau!', 'boa noite!'));
+/
+
+
+-- SECOES
 insert into tb_secoes values(
     tp_secao(
     1,
@@ -206,6 +241,7 @@ insert into tb_secoes values(
     )
 );
 
+-- THREADS
 insert into tb_threads values(
     tp_thread(
     1,
@@ -235,8 +271,18 @@ insert into tb_cria_thread values(
     null
 );
 
+
 select * from tb_usuarios;
+select U.login, U.data_hora, U.senha, U.nome, u.foto_de_perfil, (U.endereco).cep, (U.endereco).estado,
+(U.endereco).cidade, (U.endereco).rua, (U.endereco).numero from tb_usuarios U;
+
+SELECT E.endereco_email carlos_emails FROM tb_usuarios U, TABLE (U.emails) E WHERE U.login = 'carlos';
+
+SELECT 'carlos' as Usuario_Cards, T.numero, T.titulo, T.descricao FROM TABLE (SELECT U.lista_cards FROM tb_usuarios U WHERE U.login = 'carlos') T;
+/
+
 select * from tb_moderadores;
 select * from tb_secoes;
 select * from tb_threads;
-select * from tb_cria_thread;
+SELECT DEREF(C.login).login as Criador, DEREF(C.id_thread).titulo as Titulo, DEREF(C.id_secao).titulo as Secao, 
+C.data_hora as Data_Criacao FROM tb_cria_thread C;

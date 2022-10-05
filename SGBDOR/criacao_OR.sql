@@ -1,15 +1,15 @@
-drop table tb_usuarios;
-drop table tb_moderadores;
+drop table tb_cria_thread;
+drop table tb_cria_reply;
 drop table tb_replies;
 drop table tb_secoes;
 drop table tb_threads;
-drop table tb_cria_thread;
-drop table tb_cria_reply;
 drop table tb_bane;
 drop table tb_anexos;
 drop table tb_envia_mensagem;
 drop table tb_modera_thread;
 drop table tb_modera_secao;
+drop table tb_moderadores;
+drop table tb_usuarios;
 
 drop type tp_modera_thread;
 drop type tp_modera_secao;
@@ -20,6 +20,7 @@ drop type tp_cria_thread;
 drop type tp_cria_reply;
 drop type tp_moderador;
 drop type tp_usuario;
+drop type tp_pessoa;
 drop type tp_endereco;
 drop type tp_emails;
 drop type tp_email;
@@ -28,7 +29,9 @@ drop type tp_card_usuario;
 
 -- EMAILS
 CREATE OR REPLACE TYPE tp_email AS OBJECT (
-    endereco_email VARCHAR2(50)
+    endereco_email VARCHAR2(50),
+    CONSTRUCTOR FUNCTION tp_email
+    RETURN SELF AS RESULT
 );
 /
 
@@ -41,9 +44,12 @@ CREATE OR REPLACE TYPE tp_endereco AS OBJECT (
     cep VARCHAR(9),
     estado VARCHAR2(20),
     rua VARCHAR2(50),
-    cidade VARCHAR2(30) 
+    cidade VARCHAR2(30),
+    bairro VARCHAR2(30)
 );
 /
+
+ALTER TYPE tp_endereco DROP ATTRIBUTE bairro;
 
 -- CARDS
 CREATE OR REPLACE TYPE tp_card_usuario AS OBJECT(
@@ -57,7 +63,8 @@ CREATE TYPE tp_lista_cards AS TABLE OF tp_card_usuario;
 /
 
 -- USUARIOS
-CREATE OR REPLACE TYPE tp_usuario AS OBJECT (
+
+CREATE OR REPLACE TYPE tp_pessoa AS OBJECT(
     login VARCHAR2(30),
     data_hora DATE ,
     senha VARCHAR2(30),
@@ -65,16 +72,44 @@ CREATE OR REPLACE TYPE tp_usuario AS OBJECT (
     foto_de_perfil  VARCHAR2(200),
     endereco tp_endereco,
     emails tp_emails,
-    lista_cards tp_lista_cards
-) NOT FINAL;
+    lista_cards tp_lista_cards,
+    MAP MEMBER FUNCTION getRank RETURN NUMBER
+
+) NOT INSTANTIABLE NOT FINAL;
+/
+
+CREATE OR REPLACE TYPE BODY tp_moderador AS 
+    MAP MEMBER FUNCTION getRank RETURN NUMBER IS
+        BEGIN
+            RETURN -1;
+        END;
+END;
+/
+
+
+CREATE OR REPLACE TYPE tp_usuario UNDER tp_pessoa (
+) FINAL;
 /
 
 -- MODERADOR
-CREATE OR REPLACE TYPE tp_moderador UNDER tp_usuario (
-    ranking number
-);
+CREATE OR REPLACE TYPE tp_moderador UNDER tp_pessoa (
+    ranking number,
+    OVERRIDING MAP MEMBER FUNCTION getRank RETURN NUMBER,
+    MEMBER PROCEDURE setRank (r NUMBER)
+) FINAL;
 /
 
+CREATE OR REPLACE TYPE BODY tp_moderador AS 
+    MAP MEMBER FUNCTION getRank RETURN NUMBER IS
+        BEGIN
+            RETURN ranking;
+        END;
+    MEMBER PROCEDURE setRank(r NUMBER) IS 
+        BEGIN
+            ranking:=r;
+        END;
+END;
+/
 
 CREATE TABLE tb_usuarios OF tp_usuario(
     login primary key
@@ -91,9 +126,19 @@ CREATE TABLE tb_moderadores OF tp_moderador(
 CREATE OR REPLACE TYPE tp_thread AS OBJECT(
     id_thread NUMBER,
     titulo VARCHAR2(50),
-    texto VARCHAR2(300)  
+    texto VARCHAR2(300),
+    MEMBER PROCEDURE editar (novo_texto VARCHAR2)
 );
 /
+
+CREATE OR REPLACE TYPE BODY tp_thread AS 
+    MEMBER PROCEDURE editar (novo_texto VARCHAR2) IS
+    BEGIN
+        texto:=novo_texto;
+    END;
+END;
+/
+
 
 CREATE TABLE tb_threads OF tp_thread(
     id_thread primary key
@@ -129,11 +174,34 @@ CREATE OR REPLACE TYPE tp_cria_thread AS OBJECT(
     login REF tp_usuario,
     id_thread REF tp_thread,
     id_secao REF tp_secao,
-    data_hora TIMESTAMP
+    data_hora TIMESTAMP,
+    id_cria_thread number,
+    ORDER MEMBER FUNCTION compara_data(t tp_cria_thread) RETURN INTEGER
 );
 /
 
-CREATE TABLE tb_cria_thread OF tp_cria_thread;
+CREATE OR REPLACE TYPE BODY tp_cria_thread AS 
+    ORDER MEMBER FUNCTION compara_data(t tp_cria_thread) RETURN INTEGER IS
+    minha_data TIMESTAMP := data_hora;
+    outra_data TIMESTAMP := t.data_hora;
+    BEGIN
+        IF (data_hora = t.data_hora) THEN
+            RETURN 0;
+        END IF;
+        IF (data_hora > t.data_hora) THEN
+            RETURN 1;
+        END IF;
+        RETURN -1;
+    END;
+END;
+/
+
+CREATE TABLE tb_cria_thread OF tp_cria_thread(
+    id_cria_thread primary key,
+    login with rowid references tb_usuarios,
+    id_thread with rowid references tb_threads,
+    id_secao scope is tb_secoes
+);
 
 
 -- CRIACAO DE REPLY (TERNARIO)
@@ -141,15 +209,21 @@ CREATE OR REPLACE TYPE tp_cria_reply AS OBJECT(
     login REF tp_usuario,
     id_thread REF tp_thread,
     numero REF tp_reply,
-    data_hora TIMESTAMP
+    data_hora TIMESTAMP,
+    id_cria_reply number
 );
 /
 
-CREATE TABLE tb_cria_reply OF tp_cria_reply;
+CREATE TABLE tb_cria_reply OF tp_cria_reply(
+    id_cria_reply primary key,
+    login with rowid references tb_usuarios,
+    id_thread with rowid references tb_threads,
+    numero with rowid references tb_replies
+);
 
 -- BANIR (TERNARIO)
 CREATE OR REPLACE TYPE tp_bane AS OBJECT(
-    login_usario REF tp_usuario,
+    login_usuario REF tp_usuario,
     login_moderador REF tp_moderador,
     id_secao REF tp_secao
 );
@@ -359,14 +433,16 @@ insert into tb_cria_thread values(
     (select ref (P) from tb_usuarios P where login ='carlos'),
     (select ref (G) from tb_threads G where id_thread = 1),
     (select ref (Z) from tb_secoes Z where id_secao = 1),
-    null
+    null,
+    1
 );
 
 insert into tb_cria_thread values(
     (select ref (P) from tb_usuarios P where login ='victor'),
     (select ref (G) from tb_threads G where id_thread = 2),
     (select ref (Z) from tb_secoes Z where id_secao = 2),
-    null
+    null,
+    2
 );
 
 -- MODERACAO
@@ -388,15 +464,6 @@ INSERT INTO tb_modera_thread VALUES(
     'editar',
     1
 );
-
-
---CREATE OR REPLACE TYPE tp_modera_thread AS OBJECT(
---    login_moderador REF tp_moderador,
---    id_thread REF tp_thread,
---    acao VARCHAR2(30),
---    id_modera
---);
---/
 
 
 select * from tb_usuarios;

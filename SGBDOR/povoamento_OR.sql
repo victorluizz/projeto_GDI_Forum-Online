@@ -297,91 +297,120 @@ INSERT INTO tb_moderadores VALUES (
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='victorluizz'),
+(   1,
+    (select ref (E) from tb_usuarios E where E.login ='victorluizz'),
     (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
     TIMESTAMP'2022-01-13 22:30:14.23',
-    'ja assistiu corra?',
-    1
+    'ja assistiu corra?'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
+(   2,
+    (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
     (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
     TIMESTAMP'2022-01-13 22:32:12.44',
-    'sim, curti bastante',
-    2
+    'sim, curti bastante'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
+(   3,
+    (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
     (select ref (R) from tb_moderadores R where R.login ='karenn_'),
     TIMESTAMP'2022-03-15 10:30:11.55',
-    'me indica um filme?',
-    3
+    'me indica um filme?'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
+(   4,
+    (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
     (select ref (R) from tb_moderadores R where R.login ='karenn_'),
     TIMESTAMP'2022-03-15 10:31:12.43',
-    'um de terror, de preferencia',
-    4
+    'um de terror, de preferencia'
 ));
 
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_moderadores E where E.login ='karenn_'),
+(   5,
+    (select ref (E) from tb_moderadores E where E.login ='karenn_'),
     (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
     TIMESTAMP'2022-03-15 10:36:11.22',
-    'vixi, nao conheco mts',
-    5
+    'vixi, nao conheco mts'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
+(   6,
+    (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
     (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
     TIMESTAMP'2022-03-04 23:45:33.12',
-    'escuta essa musica:',
-    6
+    'escuta essa musica:'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
+(   7,
+    (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
     (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
     TIMESTAMP'2022-03-04 23:45:33.12',
-    'escuta essa musica:',
-    7
+    'escuta essa musica:'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
+(   8,
+    (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
     (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
     TIMESTAMP'2022-03-14 23:10:53.12',
-    'olha isso',
-    8
+    'olha isso'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_usuarios E where E.login ='carlos_roberto1'),
+(   9,
+    (select ref (E) from tb_usuarios E where E.login ='carlos_roberto1'),
     (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
     TIMESTAMP'2022-05-14 23:34:44.45',
-    'aqui o link que falei no topico',
-    9
+    'aqui o link que falei no topico'
 ));
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
-(   (select ref (E) from tb_moderadores E where E.login ='karenn_'),
+(   10,
+    (select ref (E) from tb_moderadores E where E.login ='karenn_'),
     (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
     TIMESTAMP'2022-04-01 11:32:13.14',
-    'escuta essa musica:',
-    10
+    'escuta essa musica:'
 ));
+
+-- Povoamento da tabela "anexo"
+
+-- ANEXOS
+INSERT INTO tb_anexos VALUES (tp_anexo
+(   1,
+    (select ref (M) from tb_envia_mensagem M where numero = 7),
+    'https://www.youtube.com/watch?v=-CmadmM5cOk'
+));
+
+INSERT INTO tb_anexos VALUES (tp_anexo
+(   2,
+    (select ref (M) from tb_envia_mensagem M where numero = 8),
+    'https://www.youtube.com/watch?v=iRzDyUQi2Qk'
+));
+
+INSERT INTO tb_anexos VALUES (tp_anexo
+(   3,
+    (select ref (M) from tb_envia_mensagem M where numero = 9),
+    'https://www.youtube.com/watch?v=A3xUeelVels'
+
+));
+
+INSERT INTO tb_anexos VALUES (tp_anexo
+(   4,
+    (select ref (M) from tb_envia_mensagem M where numero = 10),
+    'https://www.youtube.com/watch?v=PnqUs3xiAVI'
+));
+

@@ -1,4 +1,5 @@
--- Povoamento de tb_usuarios
+-- POVOANDO A TABELA "tb_usuarios"
+
 insert into tb_usuarios values(
     tp_usuario(
     'victorluiz',
@@ -184,7 +185,8 @@ INSERT INTO tb_usuarios VALUES (
 );
 
 
--- Povoamento da tabela tb_moderador
+-- POVOANDO A TABELA "tb_moderador"
+
 insert into tb_moderadores values(
     tp_moderador(
     'alice_sales', 
@@ -293,13 +295,13 @@ INSERT INTO tb_moderadores VALUES (
     )
 );
 
--- Povoamento da tabela "envia_mensagem"
+-- POVOANDO A TABELA "tb_envia_mensagem"
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   1,
-    (select ref (E) from tb_usuarios E where E.login ='victorluizz'),
-    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='victorluizz'),
+    (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='romulodaniell2'),
     TIMESTAMP'2022-01-13 22:30:14.23',
     'ja assistiu corra?'
 ));
@@ -307,8 +309,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   2,
-    (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
-    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    (SELECT REF (E) FROM tb_moderadores E WHERE E.login ='romulodaniell2'),
+    (SELECT REF (R) FROM tb_usuarios R WHERE R.login ='victorluiz'),
     TIMESTAMP'2022-01-13 22:32:12.44',
     'sim, curti bastante'
 ));
@@ -316,8 +318,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   3,
-    (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
-    (select ref (R) from tb_moderadores R where R.login ='karenn_'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='fernanda_pascoal'),
+    (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='karenn_'),
     TIMESTAMP'2022-03-15 10:30:11.55',
     'me indica um filme?'
 ));
@@ -325,18 +327,18 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   4,
-    (select ref (E) from tb_usuarios E where E.login ='fernanda_pascoal'),
-    (select ref (R) from tb_moderadores R where R.login ='karenn_'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='fernanda_pascoal'),
+    (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='karenn_'),
     TIMESTAMP'2022-03-15 10:31:12.43',
-    'um de terror, de preferencia'
+    'um de terror, de pREFerencia'
 ));
 
 
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   5,
-    (select ref (E) from tb_moderadores E where E.login ='karenn_'),
-    (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
+    (SELECT REF (E) FROM tb_moderadores E WHERE E.login ='karenn_'),
+    (SELECT REF (R) FROM tb_usuarios R WHERE R.login ='fernanda_pascoal'),
     TIMESTAMP'2022-03-15 10:36:11.22',
     'vixi, nao conheco mts'
 ));
@@ -344,8 +346,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   6,
-    (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
-    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='victorluiz'),
+    (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='romulodaniell2'),
     TIMESTAMP'2022-03-04 23:45:33.12',
     'escuta essa musica:'
 ));
@@ -353,8 +355,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   7,
-    (select ref (E) from tb_usuarios E where E.login ='victorluiz'),
-    (select ref (R) from tb_moderadores R where R.login ='romulodaniell2'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='victorluiz'),
+    (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='romulodaniell2'),
     TIMESTAMP'2022-03-04 23:45:33.12',
     'escuta essa musica:'
 ));
@@ -362,8 +364,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   8,
-    (select ref (E) from tb_moderadores E where E.login ='romulodaniell2'),
-    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    (SELECT REF (E) FROM tb_moderadores E WHERE E.login ='romulodaniell2'),
+    (SELECT REF (R) FROM tb_usuarios R WHERE R.login ='victorluiz'),
     TIMESTAMP'2022-03-14 23:10:53.12',
     'olha isso'
 ));
@@ -371,8 +373,8 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   9,
-    (select ref (E) from tb_usuarios E where E.login ='carlos_roberto1'),
-    (select ref (R) from tb_usuarios R where R.login ='victorluiz'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='carlos_roberto1'),
+    (SELECT REF (R) FROM tb_usuarios R WHERE R.login ='victorluiz'),
     TIMESTAMP'2022-05-14 23:34:44.45',
     'aqui o link que falei no topico'
 ));
@@ -380,37 +382,1028 @@ VALUES (tp_envia_mensagem
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   10,
-    (select ref (E) from tb_moderadores E where E.login ='karenn_'),
-    (select ref (R) from tb_usuarios R where R.login ='fernanda_pascoal'),
+    (SELECT REF (E) FROM tb_moderadores E WHERE E.login ='karenn_'),
+    (SELECT REF (R) FROM tb_usuarios R WHERE R.login ='fernanda_pascoal'),
     TIMESTAMP'2022-04-01 11:32:13.14',
     'escuta essa musica:'
 ));
 
--- Povoamento da tabela "anexo"
+-- POVOANDO A TABELA "tb_anexos"
 
 -- ANEXOS
 INSERT INTO tb_anexos VALUES (tp_anexo
 (   1,
-    (select ref (M) from tb_envia_mensagem M where numero = 7),
+    (SELECT REF (M) FROM tb_envia_mensagem M WHERE numero = 7),
     'https://www.youtube.com/watch?v=-CmadmM5cOk'
 ));
 
 INSERT INTO tb_anexos VALUES (tp_anexo
 (   2,
-    (select ref (M) from tb_envia_mensagem M where numero = 8),
+    (SELECT REF (M) FROM tb_envia_mensagem M WHERE numero = 8),
     'https://www.youtube.com/watch?v=iRzDyUQi2Qk'
 ));
 
 INSERT INTO tb_anexos VALUES (tp_anexo
 (   3,
-    (select ref (M) from tb_envia_mensagem M where numero = 9),
+    (SELECT REF (M) FROM tb_envia_mensagem M WHERE numero = 9),
     'https://www.youtube.com/watch?v=A3xUeelVels'
 
 ));
 
 INSERT INTO tb_anexos VALUES (tp_anexo
 (   4,
-    (select ref (M) from tb_envia_mensagem M where numero = 10),
+    (SELECT REF (M) FROM tb_envia_mensagem M WHERE numero = 10),
     'https://www.youtube.com/watch?v=PnqUs3xiAVI'
 ));
 
+-- POVOANDO A TABELA "tb_secoes"
+
+INSERT INTO tb_secoes VALUES(
+    tp_secao(
+    1,
+    'Ação'
+    )
+);
+
+INSERT INTO tb_secoes VALUES(
+    tp_secao(
+    2,
+    'Comédia'
+    )
+);
+
+INSERT INTO tb_secoes VALUES(
+    tp_secao(
+    3,
+    'Terror'
+    )
+);
+
+INSERT INTO tb_secoes VALUES(
+    tp_secao(
+    4,
+    'Romance'
+    )
+);
+
+INSERT INTO tb_secoes VALUES(
+    tp_secao(
+    5,
+    'Animação'
+    )
+);
+
+-- POVOANDO A TABELA "tb_threads"
+
+-- Seção "Comédia"
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    1, 
+    'Lancamentos de COMEDIA', 
+    'discussao dos lancamentos de comedia'  
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    2, 
+    'minha mãe é uma peça 3 é muito bom', 
+    'cara, acho que esse foi o meu favorito entre os 3. nunca ri tanto em um filme' 
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    3, 
+    'qual o filme favorito de voces de comedia?', 
+    'o meu é se beber não case' 
+    )
+);
+
+-- Seção "Terror"
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    4, 
+    'invocação do mal 1 segue sendo o melhor', 
+    'lembro até hj de ter ficado traumatizado'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    5, 
+    'qual o filme de terror favorito de vocês?', 
+    'eu fico entre invocação do mal 1 e psicose'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    6, 
+    'opiniões sobre o iluminado', 
+    'alguém aqui já assistiu? o que achou?'
+    )
+);
+
+-- Seção "Ação"
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    7, 
+    'indicação de filmes de ação pls', 
+    'alguem me indica um filme bom de ação, eu imploro'
+    )
+);
+
+
+-- Seção 'Romance'
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    8, 
+    'esse é o melhor filme de romance do mundo:', 
+    '"como eu era antes de você" e quem discordar que discorde ai a sua casa'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    9, 
+    'a barraca do beijo é mt ruim', 
+    'nem sei como isso pode ser chamado de filme, história mediocre, atuação podre e personagens entediantes'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    10, 
+    'alguem aqui gosta de "antes do amanhecer"?', 
+    'obra prima'
+    )
+);
+
+-- Seção "Animação"
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    11, 
+    'acabei de assistir encanto', 
+    'caramba que filme bom, me prendeu do inicio ao fim. eu gostei que o final não foi previsivel.'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    12, 
+    'encanto ganhou oscar', 
+    'ganhou o de melhor animação. achei muito merecido'
+    )
+);
+
+INSERT INTO tb_threads VALUES(
+    tp_thread(
+    13, 
+    'luca é o filme mais fofo do mundo', 
+    'chorei assistindo, curti muito e a mensagem que ele passa é mt linda.'
+    )
+);
+
+-- POVOANDO A TABELA "tb_cria_thread"
+
+-- Seção "Comédia"
+
+INSERT INTO tb_cria_thread VALUES(
+    1,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='victorluiz'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 1),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 2),
+    TO_DATE ('2022-01-05 09:01', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    2,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='carlos_roberto1'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 2),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 2),
+    TO_DATE ('2022-06-02 17:42', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    3,
+    (SELECT REF (P) FROM tb_moderadores P WHERE login ='romulodaniell2'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 3),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 2),
+    TO_DATE ('2022-06-02 10:30', 'yyyy-mm-dd hh24:mi')
+);
+
+
+-- Seção "Terror"
+
+INSERT INTO tb_cria_thread VALUES(
+    4,
+    (SELECT REF (P) FROM tb_moderadores P WHERE login ='marcelo_anderson'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 4),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 3),
+    TO_DATE ('2022-02-13 08:30', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    5,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='bruno_lima'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 5),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 3),
+    TO_DATE ('2022-02-13 08:20', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    6,
+    (SELECT REF (P) FROM tb_moderadores P WHERE login ='alice_sales'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 6),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 3),
+    TO_DATE ('2022-03-05 10:40', 'yyyy-mm-dd hh24:mi')
+);
+
+-- Seção "Ação"
+
+INSERT INTO tb_cria_thread VALUES(
+    7,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='carlos_roberto1'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 7),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 1),
+    TO_DATE ('2022-05-03 09:00', 'yyyy-mm-dd hh24:mi')
+);
+
+-- Seção "Romance"
+
+INSERT INTO tb_cria_thread VALUES(
+    8,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='fernanda_pascoal'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 8),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 4),
+    TO_DATE ('2022-03-14 13:34', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    9,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='victorluiz'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 9),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 4),
+    TO_DATE ('2022-03-14 13:34', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    10,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='fernanda_pascoal'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 10),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 4),
+    TO_DATE ('2022-05-03 9:21', 'yyyy-mm-dd hh24:mi')
+);
+
+-- Seção "Animação"
+
+INSERT INTO tb_cria_thread VALUES(
+    11,
+    (SELECT REF (P) FROM tb_moderadores P WHERE login ='karenn_'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 11),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 5),
+    TO_DATE ('2022-06-02 10:30', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    12,
+    (SELECT REF (P) FROM tb_moderadores P WHERE login ='karenn_'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 12),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 5),
+    TO_DATE ('2022-03-29 06:34', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_thread VALUES(
+    13,
+    (SELECT REF (P) FROM tb_usuarios P WHERE login ='ernesto32'),
+    (SELECT REF (G) FROM tb_threads G WHERE id_thread = 13),
+    (SELECT REF (Z) FROM tb_secoes Z WHERE id_secao = 5),
+    TO_DATE ('2022-05-13 12:34', 'yyyy-mm-dd hh24:mi')
+);
+
+-- POVOAMENTO DA TABELA "tb_replies"
+
+-- Seção "Comédia"
+
+INSERT INTO tb_replies VALUES(
+    1,
+    'n curti mt nenhum lançamento de comedia desse ano'
+);
+
+INSERT INTO tb_replies VALUES(
+    2,
+    'eu gostei de alguns... não achei nenhum UAU, mas tiveram alguns divertidos.'
+);
+
+INSERT INTO tb_replies VALUES(
+    3,
+    'cara eu curti bastante esse, mas o 1 é insuperável pra mim kkkkk'
+);
+
+INSERT INTO tb_replies VALUES(
+    4,
+    'acho esses filmes tão chatos'
+);
+
+INSERT INTO tb_replies VALUES(
+    5,
+    'nada supera o 1'
+);
+
+INSERT INTO tb_replies VALUES(
+    6,
+    'minha mae e uma peca'
+);
+
+INSERT INTO tb_replies VALUES(
+    7,
+    'nao consigo decidir um'
+);
+
+INSERT INTO tb_replies VALUES(
+    8,
+    'meninas malvadas'
+);
+
+INSERT INTO tb_replies VALUES(
+    9,
+    'juno'
+);
+
+INSERT INTO tb_replies VALUES(
+    10,
+    'acho que "o diabo veste prada"'
+);
+
+INSERT INTO tb_replies VALUES(
+    11,
+   'as branquelas e meninas malvadas'
+);
+
+-- Seção "Terror"
+
+INSERT INTO tb_replies VALUES(
+    12,
+   'invocação do mal 1'
+);
+
+INSERT INTO tb_replies VALUES(
+    13,
+   'acho que psicose também entra'
+);
+
+INSERT INTO tb_replies VALUES(
+    14,
+   'o exorcista'
+);
+
+INSERT INTO tb_replies VALUES(
+    15,
+   'psicose'
+);
+
+INSERT INTO tb_replies VALUES(
+    16,
+   '2022 e você nunca viu o iluminado? wtf'
+);
+
+INSERT INTO tb_replies VALUES(
+    17,
+   'sem duvidas um dos filmes ja feitos'
+);
+
+INSERT INTO tb_replies VALUES(
+    18,
+   'obra prima, assista sem medo'
+);
+
+-- Seção "Ação"
+
+
+INSERT INTO tb_replies VALUES(
+    19,
+   'qualquer um que não seja vingadores'
+);
+
+INSERT INTO tb_replies VALUES(
+    20,
+   'acabei de assistir gladiador e curti bastante, recomendo'
+);
+
+INSERT INTO tb_replies VALUES(
+    21,
+   'vingadores'
+);
+
+INSERT INTO tb_replies VALUES(
+    22,
+   'o exterminador do futuro 2, rcky um lutador e tropa de elite'
+);
+
+-- Seção "Romance"
+
+INSERT INTO tb_replies VALUES(
+    23,
+   'filme ruim da poxa'
+);
+
+INSERT INTO tb_replies VALUES(
+    24,
+   'caramba, é um dos meus favoritos'
+);
+
+INSERT INTO tb_replies VALUES(
+    25,
+   'filme podre'
+);
+
+
+INSERT INTO tb_replies VALUES(
+    26,
+   'netflix sendo netflix'
+);
+
+INSERT INTO tb_replies VALUES(
+    27,
+   'horrivel'
+);
+
+INSERT INTO tb_replies VALUES(
+    28,
+   'brega'
+);
+
+INSERT INTO tb_replies VALUES(
+    29,
+   'curto bastante esse filme'
+);
+
+-- Seção "Animações"
+
+INSERT INTO tb_replies VALUES(
+    30,
+   'gostei do filme, mas achei o final meio ruim'
+);
+
+INSERT INTO tb_replies VALUES(
+    31,
+   'esperava mais pelo que falavam'
+);
+
+INSERT INTO tb_replies VALUES(
+    32,
+   'fazia tempo que eum filme de anmação não me animava tanto'
+);
+
+INSERT INTO tb_replies VALUES(
+    33,
+   'preciso urgente assistir esse filme, geral ta me recomendando'
+);
+
+INSERT INTO tb_replies VALUES(
+    34,
+   'ainda não vi'
+);
+
+INSERT INTO tb_replies VALUES(
+    35,
+   'achei mt fofinho'
+);
+
+INSERT INTO tb_replies VALUES(
+    36,
+   'tem na netflix?'
+);
+
+-- POVOAMENTO DA TABELA "tb_cria_reply"
+
+-- Seção "Comédia"
+
+INSERT INTO tb_cria_reply VALUES(
+    1,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 1),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 1),
+    TO_DATE ('2022-01-05 09:13', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    2,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 1),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 2),
+    TO_DATE ('2022-01-05 09:15', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    3,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='ernesto32'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 2),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 3),
+    TO_DATE('2022-06-02 17:44', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    4,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='bruno_lima'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 2),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 4),
+    TO_DATE('2022-06-02 17:44', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    5,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='karenn_'),
+     (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 2),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 5),
+    TO_DATE('2022-06-02 17:44', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    6,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='ernesto32'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 6),
+    TO_DATE('2022-06-02 10:45', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    7,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='fernanda_pascoal'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 7),
+    TO_DATE('2022-06-02 10:50', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    8,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 8),
+    TO_DATE('2022-06-02 10:51', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    9,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='bruno_lima'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 9),
+    TO_DATE ('2022-06-02 10:51', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    10,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='marcelo_anderson'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 10),
+    TO_DATE('2022-06-02 11:34', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    11,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='thiago_pereira'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 3),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 11),
+    TO_DATE('2022-06-02 11:57', 'yyyy-mm-dd hh24:mi')
+
+);
+
+-- Seção "Terror"
+
+INSERT INTO tb_cria_reply VALUES(
+    12,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='marcelo_anderson'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 5),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 12),
+    TO_DATE('2022-02-13 08:22', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    13,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='marcelo_anderson'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 5),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 13),
+    TO_DATE('2022-02-13 08:23', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    14,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 5),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 14),
+    TO_DATE('2022-02-13 08:23', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    15,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='fernanda_pascoal'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 5),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 15),
+    TO_DATE('2022-03-07 08:27', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    16,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='raissa_silva'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 6),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 16),
+    TO_DATE('2022-03-05 10:42', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    17,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='ernesto32'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 6),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 17),
+    TO_DATE('2022-03-05 10:42', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    18,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 6),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 18),
+    TO_DATE('2022-03-05 10:44', 'yyyy-mm-dd hh24:mi')
+
+);
+
+-- Seção "Ação"
+
+INSERT INTO tb_cria_reply VALUES(
+    19,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='botan'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 7),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 19),
+    TO_DATE('2022-05-03 09:13', 'yyyy-mm-dd hh24:mi')
+
+);
+
+
+INSERT INTO tb_cria_reply VALUES(
+    20,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='gabriela_pinheiro'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 7),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 20),
+    TO_DATE('2022-05-03 09:15', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    21,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 7),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 21),
+    TO_DATE('2022-05-03 09:15', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    22,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='g_machado'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 7),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 22),
+    TO_DATE('2022-05-03 09:23', 'yyyy-mm-dd hh24:mi')
+
+);
+
+
+-- Seção "Romance"
+
+INSERT INTO tb_cria_reply VALUES(
+    23,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 8),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 23),
+    TO_DATE('2022-03-14 13:36', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    24,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 8),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 24),
+    TO_DATE('2022-03-15 00:34', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    25,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 9),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 25),
+    TO_DATE('2022-03-14 13:35', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    26,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='carlos_roberto1'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 9),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 26),
+    TO_DATE('2022-03-14 14:47', 'yyyy-mm-dd hh24:mi')
+
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    27,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 9),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 27),
+    TO_DATE('2022-03-15 00:45', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    28,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 10),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 28),
+    TO_DATE('2022-05-03 9:31', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    29,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='carlos_roberto1'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 10),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 29),
+    TO_DATE('2022-05-03 9:23', 'yyyy-mm-dd hh24:mi')
+);
+
+-- Seção "Animação"
+
+INSERT INTO tb_cria_reply VALUES(
+    30,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 11),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 30),
+    TO_DATE ('2022-06-02 10:31', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    31,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 11),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 31),
+    TO_DATE ('2022-06-02 10:31', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    32,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 11),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 32),
+    TO_DATE ('2022-06-02 10:34', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    33,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='victorluiz'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 13),
+    (SELECT REF (N) FROM tb_replies N WHERE numero  = 33),
+    TO_DATE ('2022-05-13 12:43', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    34,
+    (SELECT REF (C) FROM tb_moderadores C WHERE login ='romulodaniell2'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 13),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 34),
+    TO_DATE ('2022-05-13 12:45', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    35,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='fernanda_pascoal'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 13),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 35),
+    TO_DATE ('2022-05-13 12:45', 'yyyy-mm-dd hh24:mi')
+);
+
+INSERT INTO tb_cria_reply VALUES(
+    36,
+    (SELECT REF (C) FROM tb_usuarios C WHERE login ='thiago_pereira'),
+    (SELECT REF (I) FROM tb_threads I WHERE  id_thread = 13),
+    (SELECT REF (N) FROM tb_replies N WHERE numero = 36),
+    TO_DATE ('2022-05-13 13:01', 'yyyy-mm-dd hh24:mi')
+);
+
+
+-- POVOAMENTO DA TABELA "tb_modera_secao"
+
+INSERT INTO tb_modera_secao VALUES(
+    1,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 1)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    2,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 2)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    3,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 3)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    4,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 4)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    5,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 3)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    6,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 4)
+);
+
+
+INSERT INTO tb_modera_secao VALUES(
+    7,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 5)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    8,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'alice_sales'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 3)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    9,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'alice_sales'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 5)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    10,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'marcelo_anderson'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 1)
+);
+
+INSERT INTO tb_modera_secao VALUES(
+    11,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'romulodaniell2'),
+    (SELECT REF (S) FROM tb_secoes S WHERE id_secao = 1)
+);
+
+-- POVOAMENTO DA TABELA "tb_modera_thread"
+
+INSERT INTO tb_modera_thread VALUES(
+    1,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 4),
+    'Editou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    2,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 12),
+    'Fixou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    3,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'alice_sales'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 6),
+    'Fixou'
+);
+
+
+INSERT INTO tb_modera_thread VALUES(
+    4,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 1),
+    'Fechou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    5,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 2),
+    'Editou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    6,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 3),
+    'Arquivou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    7,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 4),
+    'Desfixou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    8,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 4),
+    'Editou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    9,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 5),
+    'Editou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    10,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'marcelo_anderson'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 2),
+    'Editou'
+);
+
+INSERT INTO tb_modera_thread VALUES(
+    11,
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'marcelo_anderson'),
+    (SELECT REF (I) FROM tb_threads I WHERE id_thread = 3),
+    'Fixou'
+);
+
+-- POVOAMENTO DA TABELA "tb_bane"
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 1)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 2)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 3)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan_'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 4)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'gabriela_pinheiro'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 5)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'gabriela_pinheiro'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 4)
+
+);
+
+INSERT INTO tb_bane VALUES(
+    (SELECT REF (B) FROM tb_usuarios B WHERE login = 'fernanda_pascoal'),
+    (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
+    (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 5)
+
+);

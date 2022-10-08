@@ -217,13 +217,17 @@ CREATE TABLE tb_cria_reply OF tp_cria_reply(
 
 -- BANIR (TERNARIO)
 CREATE OR REPLACE TYPE tp_bane AS OBJECT(
+    id_bane NUMBER,
     login_usuario REF tp_pessoa,
     login_moderador REF tp_moderador,
     id_secao REF tp_secao
 );
 /
 
-CREATE TABLE tb_bane OF tp_bane;
+CREATE TABLE tb_bane OF tp_bane(
+    id_bane primary key
+);
+
 
 -- ENVIA_MENSAGEM
 

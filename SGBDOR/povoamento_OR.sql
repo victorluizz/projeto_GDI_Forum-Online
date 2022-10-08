@@ -1360,6 +1360,7 @@ INSERT INTO tb_modera_thread VALUES(
 
 -- POVOAMENTO DA TABELA "tb_bane"
 INSERT INTO tb_bane VALUES(
+    1,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 1)
@@ -1367,6 +1368,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    2,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 2)
@@ -1374,6 +1376,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    3,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 3)
@@ -1381,6 +1384,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    4,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'g_machado'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'botan_'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 4)
@@ -1388,6 +1392,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    5,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'gabriela_pinheiro'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 5)
@@ -1395,6 +1400,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    6,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'gabriela_pinheiro'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 4)
@@ -1402,6 +1408,7 @@ INSERT INTO tb_bane VALUES(
 );
 
 INSERT INTO tb_bane VALUES(
+    7,
     (SELECT REF (B) FROM tb_usuarios B WHERE login = 'fernanda_pascoal'),
     (SELECT REF (M) FROM tb_moderadores M WHERE login = 'karenn_'),
     (SELECT REF (I) FROM tb_secoes I WHERE id_secao = 5)

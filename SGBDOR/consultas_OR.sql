@@ -30,7 +30,7 @@ Descrição: Consultando todos as mensagens que possuem um anexo, assim como o l
 SELECT DEREF(A.numero_msg).texto as NUMERO_MENSAGEM, DEREF(DEREF(A.numero_msg).login_envia).login as USUARIO_ENVIA, DEREF(A.numero_msg).data_hora as DATA_HORA, A.link_anexo FROM tb_anexos A;
 
 /*
-CONSULTA 5
+CONSULTA 5 - DEREF, REF E NESTED TABLE
 Descrição: Criando uma função para saber quantos cards alguns usuários e moderadores possuem.
 */
 
@@ -54,11 +54,28 @@ SELECT m.lista_cards into n from tb_moderadores m
 DBMS_OUTPUT.PUT_LINE('Número de cards: = '||n.count);
 END;
 /
+/*
+CONSULTA 6
+Descrição: Consultando todas as threads criadas, quem criou, qual a seção e a data.
+*/
+SELECT DEREF(C.login).login as Criador, DEREF(C.id_thread).titulo as Titulo, DEREF(C.id_secao).titulo as Secao, 
+C.data_hora as Data_Criacao FROM tb_cria_thread C;
+/*
+CONSULTA 7
+Descrição: Consultando as seções que os moderadores moderam.
+*/
+SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_secao).titulo as SECAO_TITULO, M.id_modera_secao FROM tb_modera_secao M; 
+
+/*
+CONSULTA 8
+Descrição: Consultando quais threads os moderadores editaram, fixaram ou arquivaram.
+*/
+SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_thread).titulo as THREAD_TITULO, M.acao, M.id_modera FROM tb_modera_thread M; 
 
 -- CONSULTAS A UM VARRAY
 
 /*
-CONSULTA 6
+CONSULTA 9
 Descrição: Consultando quantos endereços de email um usuário tem.
 */
 
@@ -86,13 +103,13 @@ END;
 -- NESTED TABLE 
 
 /*
-CONSULTA 7
+CONSULTA 10
 Descrição: Consultando todos os cards do usuário "victorluiz"
 */
 SELECT * FROM TABLE(SELECT C.lista_cards FROM tb_usuarios C WHERE C.login = 'victorluiz');
 
 /*
-CONSULTA 8
+CONSULTA 11
 Descrição: Consultando todos os cards do moderador "romulodaniell2"
 */
 

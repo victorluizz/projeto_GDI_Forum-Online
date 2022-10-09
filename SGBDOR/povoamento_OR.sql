@@ -339,7 +339,7 @@ INSERT INTO tb_moderadores VALUES (
 INSERT INTO tb_envia_mensagem
 VALUES (tp_envia_mensagem
 (   1,
-    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='victorluizz'),
+    (SELECT REF (E) FROM tb_usuarios E WHERE E.login ='victorluiz'),
     (SELECT REF (R) FROM tb_moderadores R WHERE R.login ='romulodaniell2'),
     TIMESTAMP'2022-01-13 22:30:14.23',
     'ja assistiu corra?'

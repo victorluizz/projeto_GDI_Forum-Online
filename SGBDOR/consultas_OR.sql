@@ -25,26 +25,29 @@ Descrição: Consultando todos as mensagens que possuem um anexo, assim como o l
 */
 SELECT DEREF(A.numero_msg).texto as NUMERO_MENSAGEM, DEREF(DEREF(A.numero_msg).login_envia).login as USUARIO_ENVIA, DEREF(A.numero_msg).data_hora as DATA_HORA, A.link_anexo FROM tb_anexos A;
 
-
 /*CONSULTA 5
-
+Descrição: Criando uma função para saber quantos cards alguns usuários e moderadores possuem.
 */
 
-SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_secao).titulo as SECAO_TITULO, M.id_modera_secao FROM tb_modera_secao M; 
-SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_thread).titulo as THREAD_TITULO, M.acao, M.id_modera FROM tb_modera_thread M; 
-
-
--- CONSULTAS A UM VARRAY
-
-/*CONSULTA 1
-Descrição: Criando uma função para saber quantos cards o usuário "victorluiz" possui
-*/
-
+-- Usuário: "victorluiz"
 DECLARE
 n tb_usuarios.lista_cards%type;
 BEGIN
 SELECT c.lista_cards into n from tb_usuarios c
     WHERE c.login = 'victorluiz';
-DBMS_OUTPUT.PUT_LINE('QTDE='||n.count);
+DBMS_OUTPUT.PUT_LINE('Número de cards: = '||n.count);
 END;
 /
+
+-- Moderador: "romulodaniell2"
+DECLARE
+n tb_moderadores.lista_cards%type;
+BEGIN
+SELECT m.lista_cards into n from tb_moderadores m
+    WHERE m.login = 'romulodaniell2';
+DBMS_OUTPUT.PUT_LINE('Número de cards: = '||n.count);
+END;
+/
+
+-- CONSULTAS A UM VARRAY
+

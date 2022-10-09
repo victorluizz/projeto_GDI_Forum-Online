@@ -10,6 +10,7 @@ drop table tb_modera_thread;
 drop table tb_modera_secao;
 drop table tb_moderadores;
 drop table tb_usuarios;
+drop table tb_endereco;
 
 drop type tp_modera_thread;
 drop type tp_modera_secao;
@@ -40,6 +41,7 @@ CREATE OR REPLACE TYPE tp_emails AS VARRAY(5) OF tp_email;
 
 -- ENDERECO
 CREATE OR REPLACE TYPE tp_endereco AS OBJECT (
+    cod_end NUMBER,
     numero NUMBER,
     cep VARCHAR(9),
     estado VARCHAR2(20),
@@ -51,6 +53,10 @@ CREATE OR REPLACE TYPE tp_endereco AS OBJECT (
 
 ALTER TYPE tp_endereco DROP ATTRIBUTE bairro;
 
+CREATE TABLE tb_endereco OF tp_endereco(
+    cod_end primary key
+);
+/
 -- CARDS
 CREATE OR REPLACE TYPE tp_card_usuario AS OBJECT(
     numero NUMBER,
@@ -70,7 +76,7 @@ CREATE OR REPLACE TYPE tp_pessoa AS OBJECT(
     senha VARCHAR2(30),
     nome VARCHAR2(50),
     foto_de_perfil  VARCHAR2(200),
-    endereco tp_endereco,
+    endereco REF tp_endereco,
     emails tp_emails,
     lista_cards tp_lista_cards,
     MAP MEMBER FUNCTION getRank RETURN NUMBER
@@ -112,12 +118,14 @@ END;
 /
 
 CREATE TABLE tb_usuarios OF tp_usuario(
-    login primary key
+    login primary key,
+    endereco WITH ROWID REFERENCES tb_endereco
 )  NESTED TABLE lista_cards STORE AS nt_cards;
 /
 
 CREATE TABLE tb_moderadores OF tp_moderador(
-    login primary key
+    login primary key,
+    endereco WITH ROWID REFERENCES tb_endereco
 ) NESTED TABLE lista_cards STORE AS nt_cards2;
 /
 

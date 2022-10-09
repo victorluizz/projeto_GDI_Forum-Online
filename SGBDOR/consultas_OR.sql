@@ -78,7 +78,7 @@ SELECT DEREF(M.login_moderador).login as MODERADOR_LOGIN, DEREF(M.id_thread).tit
 CONSULTA 9
 Descrição: Consultando quantos endereços de email um usuário tem.
 */
-
+-- Usuário: "g_machado"
 DECLARE
 email_usuario tb_usuarios.emails%type;
 
@@ -91,7 +91,7 @@ BEGIN
 
 
     IF email_usuario.count > 1 THEN
-        DBMS_OUTPUT.PUT_LINE('Primeiro endereço de email = '|| email_usuario(1).endereco_email || 'Ele possui ' || email_usuario.count || ' endereços de email.');
+        DBMS_OUTPUT.PUT_LINE('Primeiro endereço de email = '|| email_usuario(1).endereco_email || '. Ele possui ' || email_usuario.count || ' endereços de email.');
     ELSE
         DBMS_OUTPUT.PUT_LINE('O único endereço de email do usuário é = '|| email_usuario(1).endereco_email || '. Este é o único endereço de email do usuário.');
 
@@ -99,6 +99,27 @@ BEGIN
 END;
 /
 
+-- Moderador: "romulodaniell2"
+
+DECLARE
+email_usuario tb_moderadores.emails%type;
+
+BEGIN
+    SELECT M.emails
+    INTO email_usuario
+    FROM tb_moderadores M
+    WHERE M.login = 'romulodaniell2';
+    
+
+
+    IF email_usuario.count > 1 THEN
+        DBMS_OUTPUT.PUT_LINE('Primeiro endereço de email = '|| email_usuario(1).endereco_email || '. Ele possui ' || email_usuario.count || ' endereços de email.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('O único endereço de email do usuário é = '|| email_usuario(1).endereco_email || '. Este é o único endereço de email do usuário.');
+
+    END IF;
+END;
+/
 
 -- NESTED TABLE 
 

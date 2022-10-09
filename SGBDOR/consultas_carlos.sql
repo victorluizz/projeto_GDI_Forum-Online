@@ -17,4 +17,3 @@ select * from tb_secoes;
 select * from tb_threads;
 SELECT DEREF(C.login).login as Criador, DEREF(C.id_thread).titulo as Titulo, DEREF(C.id_secao).titulo as Secao, 
 C.data_hora as Data_Criacao FROM tb_cria_thread C;
-*/

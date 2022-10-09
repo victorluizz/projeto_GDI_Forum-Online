@@ -1,3 +1,140 @@
+-- POVOANDO A TABELA "tb_endereco"
+
+INSERT INTO tb_endereco VALUES (
+    01,
+    04, 
+    '52041-701', 
+    'Pernambuco', 
+    'Rua Ascenso Ferreira', 
+    'Recife'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    02,
+    78, 
+    '54789-430', 
+    'Pernambuco', 
+    'Rua Lindos Poemas', 
+    'Camaragibe'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    03,
+    43, 
+    '55850-971', 
+    'Pernambuco', 
+    'Rua Abdon José de Lima 12', 
+    'Vicência'
+
+);
+
+
+INSERT INTO tb_endereco VALUES (
+    04,
+    22, 
+    '54705-370', 
+    'Pernambuco', 
+    'Rua São João do Piauí', 
+    'São Lourenço da Mata'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    05,
+    12, 
+    '45295-970', 
+    'Bahia', 
+    'Rua Ruy Barbosa', 
+    'Água Doce'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    06,
+    09, 
+    '01405-020', 
+    'São Paulo', 
+    'Jardim Maria Badra', 
+    'São Paulo'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    07,
+    87, 
+    '36803-971', 
+    'Minas Gerais', 
+    'Praça Nascimento Leal 96', 
+    'Alvorada'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    08,
+    16, 
+    '69903-022', 
+    'Acre', 
+    'Rua Travessa Manaus', 
+    'Rio Branco'
+
+);
+
+INSERT INTO tb_endereco VALUES (
+    09,
+    21, 
+    '69901-375', 
+    'Acre', 
+    'Rua Doutor Adalberto Costa e Silva', 
+    'Rio Branco'
+);
+
+INSERT INTO tb_endereco VALUES (
+    10,
+    25, 
+    '58046-528', 
+    'Paraíba', 
+    'Rua Orlando Falcone de Oliveira', 
+    'João Pessoa'
+);
+
+INSERT INTO tb_endereco VALUES (
+    11,
+    65, 
+    '58400-299', 
+    'Paraíba', 
+    'Travessa Presidente Epitácio Pessoa', 
+    'Campina Grande'
+);
+
+INSERT INTO tb_endereco VALUES (
+    12,
+    72, 
+    '38700-492', 
+    'Minas Gerais', 
+    'Rua Rondônia', 
+    'Patos de Minas'
+);
+
+INSERT INTO tb_endereco VALUES (
+    13,
+    04, 
+    '52041-701', 
+    'Pernambuco', 
+    'Rua Ascenso Ferreira', 
+    'Recife'
+);
+
+INSERT INTO tb_endereco VALUES (
+    14,
+    65, 
+    '13052-763', 
+    'São Paulo', 
+    'Rua Victalina de Oliveira Astolfi', 
+    'Campinas'
+);
+
 -- POVOANDO A TABELA "tb_usuarios"
 
 insert into tb_usuarios values(
@@ -7,14 +144,7 @@ insert into tb_usuarios values(
     'vitinholuizz',
     'Victor Luiz',
     'https://avatarfiles.alphacoders.com/241/thumb-241064.jpg',
-    tp_endereco(
-        04,
-        '52041-701',
-        'Pernambuco',
-        'Rua Ascenso Ferreira',
-        'Recife'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 01),
     tp_emails(tp_email('victorluiz300@gmail.com'),tp_email('victorluiz300@hotmail.com')),
     tp_lista_cards(tp_card_usuario(1, 'Filmes favoritos:', 'Meus filmes favoritos são: Corra, Shrek (todos) e A Culpa é das Estrelas'), tp_card_usuario(2, 'Artistas favoritos:', 'Juliette, Anitta e Luisa Sonza'))
     )
@@ -27,14 +157,7 @@ insert into tb_usuarios values(
     'carlosrpereira', 
     'Carlos Roberto', 
     'https://avatarfiles.alphacoders.com/106/thumb-106992.png',
-    tp_endereco(
-        43, 
-        '55850-971', 
-        'Pernambuco', 
-        'Rua Abdon José de Lima 12', 
-        'Vicência'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 03),
     tp_emails(tp_email('carlosroberopereira5@gmail.com'), tp_email('carlosroberopereira2@gmail.com'), tp_email('carlosroberobertoo75@gmail.com')),
     tp_lista_cards(tp_card_usuario(3, 'Card 1', 'Fã de filmes no geral.'))
     )
@@ -48,14 +171,7 @@ insert into tb_usuarios values(
     'odeiolol', 
     'Gabriel Machado', 
     'https://avatarfiles.alphacoders.com/294/thumb-294910.jpg',
-    tp_endereco(
-        12, 
-        '45295-970', 
-        'Bahia', 
-        'Rua Ruy Barbosa', 
-        'Água Doce'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 05),
     tp_emails(tp_email('gabsmachad0@gmail.com')),
     tp_lista_cards()
     )
@@ -69,14 +185,7 @@ insert into tb_usuarios values(
     'amocerveja', 
     'Fernanda Pascoal', 
     'https://avatarfiles.alphacoders.com/314/thumb-314751.jpg',
-    tp_endereco(
-        87, 
-        '36803-971', 
-        'Minas Gerais', 
-        'Praça Nascimento Leal 96', 
-        'Alvorada'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 07),
     tp_emails(tp_email('fernandapasc@gmail.com')),
     tp_lista_cards(tp_card_usuario(4, 'Card 1', 'Fã de cinema no geral, mas apaixonada por romances clichês.'), tp_card_usuario(5, 'Filme favorito no momento', 'A Culpa é das Estrelas'))
     )
@@ -89,14 +198,7 @@ INSERT INTO tb_usuarios VALUES (
     'petvicamo',
     'Bruno Lima',
     'https://i.pinimg.com/736x/59/78/93/59789370da99e5d88648467e36f58ca2.jpg',
-    tp_endereco(
-        16, 
-        '69903-022', 
-        'Acre', 
-        'Rua Travessa Manaus', 
-        'Rio Branco'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 08),
     tp_emails(tp_email('brunaolimao@gmail.com'),tp_email('brunaolimao2@hotmail.com')),
     tp_lista_cards(tp_card_usuario(6, 'Filmes favs:', 'Fã de filmes de terror e ação.'), tp_card_usuario(7, 'Artistas favs:', 'Tudo menos Beattles'))
     )
@@ -110,14 +212,7 @@ INSERT INTO tb_usuarios VALUES (
     'thiagoalice',
     'Thiago Pereira',
     'https://pbs.twimg.com/media/E5zLZVYX0AkgVPI.jpg',
-    tp_endereco(
-        25, 
-        '58046-528', 
-        'Paraíba', 
-        'Rua Orlando Falcone de Oliveira', 
-        'João Pessoa'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 10),
     tp_emails(tp_email('thiagoalice@gmail.com'),tp_email('thiagoalice2@hotmail.com')),
     tp_lista_cards()
     )
@@ -130,14 +225,7 @@ INSERT INTO tb_usuarios VALUES (
     'manubela',
     'Raissa Silva',
     'https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/bltfd1b78b5bd31bac9/629149121a5eff4c4c377593/Lol_EM_PRIDE_2022_EXP.jpg',
-    tp_endereco(
-        65, 
-        '58400-299', 
-        'Paraíba', 
-        'Travessa Presidente Epitácio Pessoa', 
-        'Campina Grande'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 11),
     tp_emails(tp_email('estrelamanubela@gmail.com'),tp_email('estrelamanubela2@hotmail.com')),
     tp_lista_cards()
     )
@@ -150,14 +238,7 @@ INSERT INTO tb_usuarios VALUES (
     'gabijesusefiel',
     'Gabriela Pinheiro',
     'https://st2.depositphotos.com/5686448/45955/v/600/depositphotos_459558582-stock-illustration-abstract-woman-profile-portrait-with.jpg',
-    tp_endereco(
-        72, 
-        '38700-492', 
-        'Minas Gerais', 
-        'Rua Rondônia', 
-        'Patos de Minas'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 12),
     tp_emails(tp_email('gabijesus@gmail.com'),tp_email('gabijesus02@hotmail.com')),
     tp_lista_cards()
     )
@@ -171,14 +252,7 @@ INSERT INTO tb_usuarios VALUES (
     'ernestofielacristo',
     'Ernesto', 'https
     //avatarfiles.alphacoders.com/823/thumb-82389.png',
-    tp_endereco(
-        65, 
-        '13052-763', 
-        'São Paulo', 
-        'Rua Victalina de Oliveira Astolfi', 
-        'Campinas'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 14),
     tp_emails(tp_email('ernestogonc@gmail.com'),tp_email('ernestogonc2@hotmail.com')),
     tp_lista_cards()
     )
@@ -194,14 +268,7 @@ insert into tb_moderadores values(
     'floquinho2015', 
     'Alice Sales', 
     'https://avatarfiles.alphacoders.com/181/thumb-181638.png',
-    tp_endereco(
-        78, 
-        '54789-430', 
-        'Pernambuco', 
-        'Rua Lindos Poemas', 
-        'Camaragibe'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 02),
     tp_emails(tp_email('alice12sales@gmail.com')),
     tp_lista_cards(),
     1
@@ -216,14 +283,7 @@ insert into tb_moderadores values(
     'amoinfrahw', 
     'Botan', 
     'https://avatars.alphacoders.com/avatars/view/43265',
-    tp_endereco(
-        22, 
-        '54705-370', 
-        'Pernambuco', 
-        'Rua São João do Piauí', 
-        'São Lourenço da Mata'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 04),
     tp_emails(tp_email('renatoalpes@gmail.com'), tp_email('renatoalpes@hotmail.com')),
     tp_lista_cards(),
     3
@@ -238,14 +298,7 @@ insert into tb_moderadores values(
     'karendoismilevintedois', 
     'Karen', 
     'https://avatarfiles.alphacoders.com/272/thumb-272946.jpg',
-    tp_endereco(
-        09, 
-        '01405-020', 
-        'São Paulo', 
-        'Jardim Maria Badra', 
-        'São Paulo'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 06),
     tp_emails(tp_email('karenbarbosasilva@gmail.com')),
     tp_lista_cards(),
     2
@@ -260,14 +313,7 @@ INSERT INTO tb_moderadores VALUES (
     'eissoglr',
     'Marcelo Anderson',
     'https://i.pinimg.com/originals/b5/73/28/b57328c8c5d2b872a69d0c70156d4c71.jpg',
-    tp_endereco(
-        21, 
-        '69901-375', 
-        'Acre', 
-        'Rua Doutor Adalberto Costa e Silva', 
-        'Rio Branco'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 09),
     tp_emails(tp_email('marcelinhodosolhinhos@gmail.com'),tp_email('marcelinhodosolhinhos2@hotmail.com')),
     tp_lista_cards(tp_card_usuario(8, 'Card 1', 'Fã de filmes de terror.')),
     1
@@ -281,14 +327,7 @@ INSERT INTO tb_moderadores VALUES (
     'x1lixo_yasuo',
     'Romulo Daniell',
     'https://avatarfiles.alphacoders.com/236/236565.jpg',
-    tp_endereco(
-        04, 
-        '52041-701', 
-        'Pernambuco', 
-        'Rua Ascenso Ferreira', 
-        'Recife'
-        )
-    ,
+    (SELECT REF(E) FROM tb_endereco E WHERE cod_end = 13),
     tp_emails(tp_email('romulodaniell2013@gmail.com'),tp_email('romulodaniell2015@hotmail.com')),
     tp_lista_cards(tp_card_usuario(9, 'Frase:', 'Quando você ama, há o risco de odia -Naruto'), tp_card_usuario(10, 'Bandas favoritas', 'Taylor, Eve e Ariana'), tp_card_usuario(11, 'Manga favorito:', 'Solo Leveling')),
     4
